@@ -4,16 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import how_are_you_project.how_are_you.board.domain.Board;
 import how_are_you_project.how_are_you.order.domain.Order;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "member")
 @Getter
+@Setter
 public class Member {
 
     @Id
@@ -27,6 +28,7 @@ public class Member {
 
     @JsonIgnore
     @NotEmpty
+    @Column(nullable = false, length = 20)
     private String password; //노출되면 안되기 때문
 
     @NotEmpty

@@ -1,20 +1,34 @@
 package how_are_you_project.how_are_you.member.repository;
 
 import how_are_you_project.how_are_you.member.domain.Member;
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import javax.persistence.EntityManager;
+import java.util.List;
 
-public interface MemberRepository {
-    Optional<Member>  findByUsername(String username);
-    // 000. 사용자의 비밀번호와 이메일을 수정하시오
+@Repository
+@RequiredArgsConstructor
 
-    @Repository
-    public interface UserRepository extends JpaRepository<Member,Long>{
-        Optional<Member> findByUsername(String username);
+public class MemberRepository {
 
+    private final EntityManager em;
+
+    public void save(Member member) {
+        em.persist(member);
+    }
+
+    public Member findOne(Long id){
+        return em.find(Member.class, id);
+    }
+
+    public List<Member> findAll(){
+        return em.createQuery("select m from Member m", Member.class)
+                .getResultList();
+    }
+
+    public List<Member> findByName(String email){
+        return em.createQuery("select m from Member m where m.userName = :email", Member.class)
+                .setParameter("email",email).getResultList();
     }
 }
-
