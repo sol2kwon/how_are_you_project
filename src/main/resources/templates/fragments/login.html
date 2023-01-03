@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="login" class="w3-container">
-    <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-large">이야기 작성하기</button>
+    <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-green w3-xlarge" style="height: 56px;margin: 30px;">이야기 작성하기</button>
 
     <div id="id01" class="w3-modal">
         <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
@@ -24,7 +24,8 @@
 
             <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
                 <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
-                <span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span>
+                <span class="w3-right w3-padding w3-hide-small">Please <a href="#">sign up</a></span>
+                <span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password or ID?</a></span>
             </div>
         </div>
     </div>

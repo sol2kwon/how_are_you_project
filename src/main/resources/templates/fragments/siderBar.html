@@ -2,18 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <!-- Sidebar -->
-<nav th:fragment="siderBar" class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px" id="mySidebar">
-    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-black w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
-        <i class="fa fa-remove"></i>
-    </a>
-    <div class="w3-bar-block w3-center">
-        <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">About</a>
-        <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Photos</a>
-        <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Shop</a>
-        <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Contact</a>
-    </div>
-</nav>
+<!--<nav th:fragment="siderBar" class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px" id="mySidebar">-->
+<!--    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-black w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">-->
+<!--        <i class="fa fa-remove"></i>-->
+<!--    </a>-->
+<!--    <div class="w3-bar-block w3-center">-->
+<!--        <a href="#about" class="w3-bar-item w3-button w3-text-grey w3-hover-black">About</a>-->
+<!--        <a href="#menu" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Photos</a>-->
+<!--        <a href="#contact" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Shop</a>-->
+<!--        <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Contact</a>-->
+<!--    </div>-->
+<!--</nav>-->
 
+<!--</html>-->
+
+<!-- Navbar (sit on top) -->
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="siderBar" class="w3-top">
+    <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+        <a href="#home" class="w3-bar-item w3-button">How are you ?</a>
+        <!-- Right-sided navbar links. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+            <a href="#about" class="w3-bar-item w3-button">About</a>
+            <a href="#menu" class="w3-bar-item w3-button">Menu</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+        </div>
+    </div>
+</div>
 </html>
 
 
