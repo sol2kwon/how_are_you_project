@@ -1,4 +1,4 @@
-package how_are_you_project.how_are_you;
+package how_are_you_project.how_are_you.common;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

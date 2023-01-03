@@ -1,0 +1,53 @@
+package how_are_you_project.how_are_you.oderItem.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import how_are_you_project.how_are_you.item.domain.Item;
+import how_are_you_project.how_are_you.order.domain.Order;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Setter
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)//다른 사람이 생성하지 못하게 추가.
+public class OrderItem {
+    @Id @GeneratedValue
+    @Column(name = "order_item_id")
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private Item item;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    private int orderPrice; //주문 가격
+    private int count; //주문수량
+
+//    //==생성 메서드==
+//    public static OrderItem createOrderItem(Item item, int orderPrice, int count){
+//        OrderItem orderItem = new OrderItem();
+//        orderItem.setItem(item);
+//        orderItem.setOrderPrice(orderPrice);
+//        orderItem.setCount(count);
+//
+//        item.removeStock(count);
+//        return orderItem;
+//    }
+//
+//    //==비즈니스 로직==
+//    public void cancel(){
+//        getItem().addStock(count);
+//    } //주문이 취소되면 재고는 다시 올라간다.
+//
+//    //==조회 로직==
+//    public int getTotalPrice(){
+//        return getOrderPrice() * getCount();
+//    }
+}
