@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<!--<div th:replace="fragments/siderBar :: siderBar"></div>-->
+</head>
+<style>
+    .fieldError {
+        border-color: #bd2130;
+
+    }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+<div style="display: flex;justify-content: center;" >
+<form role="form" action="/members/join" th:object="${memberForm}" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue" style="margin: auto">
+    <h2 class="w3-center"><b>회원가입</b></h2>
+    <div class="w3-row w3-section">
+        <label th:for="userName">아이디</label>
+        <input type="text" th:field="*{userName}" class="form-control"
+               placeholder="아이디를 입력하세요"
+               th:class="${#fields.hasErrors('userName')}? 'form-control fieldError' : 'form-control'">
+        <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" style="color: #bd2130;">Incorrect date</p>
+    </div>
+
+    <div class="w3-row w3-section">
+        <label th:for="password">비밀번호</label>
+        <input type="text" th:field="*{password}" class="form-control"
+               placeholder="비밀번호를 입력하세요"
+               th:class="${#fields.hasErrors('password')}? 'form-control fieldError' : 'form-control'">
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: #bd2130;">Incorrect date</p>
+    </div>
+
+    <div class="w3-row w3-section">
+        <label th:for="name">이름</label>
+        <input type="text" th:field="*{name}" class="form-control"
+               placeholder="이름을 입력하세요"
+               th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'">
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: #bd2130;">Incorrect date</p>
+    </div>
+
+    <div class="w3-row w3-section">
+        <label th:for="birth">생년월일</label>
+        <input type="text" th:field="*{birth}" class="form-control"
+               placeholder="생년월일을 입력하세요"
+               th:class="${#fields.hasErrors('birth')}? 'form-control fieldError' : 'form-control'">
+        <p th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}" style="color: #bd2130;">Incorrect date</p>
+    </div>
+
+    <div class="w3-row w3-section">
+        <label th:for="email">이메일</label>
+        <input type="text" th:field="*{email}" class="form-control"
+               placeholder="이메일을 입력하세요"
+               th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'">
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: #bd2130;">Incorrect date</p>
+    </div>
+
+    <p class="w3-center">
+        <a type="button" class="w3-button w3-section w3-red w3-ripple" href="/">취소</a>
+    <button type="submit" class="w3-button w3-section w3-blue w3-ripple" style="color: #bd2130;">작성완료</button>
+    </p>
+</form>
+</div>
+
+<!-- Footer -->
+<!--<nav th:replace="fragments/footer :: footer"></nav>-->
+
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<title>W3.CSS</title>-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--<body>-->
+
+<!--<form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">-->
+<!--    <h2 class="w3-center">Contact Us</h2>-->
+
+<!--    <div class="w3-row w3-section">-->
+<!--        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>-->
+<!--        <div class="w3-rest">-->
+<!--            <input class="w3-input w3-border" name="first" type="text" placeholder="First Name">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="w3-row w3-section">-->
+<!--        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>-->
+<!--        <div class="w3-rest">-->
+<!--            <input class="w3-input w3-border" name="last" type="text" placeholder="Last Name">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="w3-row w3-section">-->
+<!--        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>-->
+<!--        <div class="w3-rest">-->
+<!--            <input class="w3-input w3-border" name="email" type="text" placeholder="Email">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="w3-row w3-section">-->
+<!--        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>-->
+<!--        <div class="w3-rest">-->
+<!--            <input class="w3-input w3-border" name="phone" type="text" placeholder="Phone">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="w3-row w3-section">-->
+<!--        <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>-->
+<!--        <div class="w3-rest">-->
+<!--            <input class="w3-input w3-border" name="message" type="text" placeholder="Message">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <p class="w3-center">-->
+<!--        <button class="w3-button w3-section w3-blue w3-ripple"> Send </button>-->
+<!--    </p>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
