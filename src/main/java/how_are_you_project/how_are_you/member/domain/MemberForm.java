@@ -1,4 +1,4 @@
-package how_are_you_project.how_are_you.member.controller;
+package how_are_you_project.how_are_you.member.domain;
 
 import lombok.Getter;
 import lombok.Setter;

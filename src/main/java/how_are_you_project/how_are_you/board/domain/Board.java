@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "member")
+@Table(name = "board")
 @Getter
 public class Board {
     @Id

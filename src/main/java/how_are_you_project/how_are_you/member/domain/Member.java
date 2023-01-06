@@ -22,25 +22,15 @@ public class Member {
     @Column(name = "member_id")
     private long id;
 
-    @NotEmpty
-    @Column(nullable = false, length = 20)
     private String userName;
 
     @JsonIgnore
-    @NotEmpty
-    @Column(nullable = false, length = 20)
     private String password; //노출되면 안되기 때문
 
-    @NotEmpty
-    @Column(nullable = false, length =20)
     private String name;
 
-    @NotEmpty
-    @Column(nullable = false, length =20)
     private String birth;
 
-    @NotEmpty
-    @Column(nullable = false, length =50)
     private String email;
 
     @JsonIgnore
