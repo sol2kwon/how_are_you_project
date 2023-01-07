@@ -8,13 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 public interface MemberInterfaceRepository {
-    Optional<Member>  findByUsername(String username);
-    // 000. 사용자의 비밀번호와 이메일을 수정하시오
 
-    @Repository
-    public interface UserRepository extends JpaRepository<Member,Long>{
-        Optional<Member> findByUsername(String username);
-
-    }
 }
 

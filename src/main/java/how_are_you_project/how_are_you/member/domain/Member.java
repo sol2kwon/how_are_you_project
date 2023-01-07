@@ -1,44 +1,55 @@
 package how_are_you_project.how_are_you.member.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import how_are_you_project.how_are_you.board.domain.Board;
-import how_are_you_project.how_are_you.order.domain.Order;
+import how_are_you_project.how_are_you.question.domain.MemberQuestion;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name = "member")
 @Getter
-@Setter
+@NoArgsConstructor
 public class Member {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "member_id")
-    private long id;
+    private Long memberId;
 
-    private String userName;
+    @Column(name = "login_id")
+    private String loginId;
 
-    @JsonIgnore
-    private String password; //노출되면 안되기 때문
+    @Column(name = "login_password")
+    private String loginPassword;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "birth")
     private String birth;
 
+    @Column(name = "email")
     private String email;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "member")//읽기전용
-    private List<Order> orders = new ArrayList<>();
+    private List<MemberQuestion> memberQuestion = new ArrayList<>();
 
+    @Builder
+    public Member(String loginId, String loginPassword, String name, String birth, String email) {
+        this.loginId = loginId;
+        this.loginPassword = loginPassword;
+        this.name = name;
+        this.birth = birth;
+        this.email = email;
+    }
 
-//
+    //
 //    public List<Role> roles;
 
 //    @JsonIgnore

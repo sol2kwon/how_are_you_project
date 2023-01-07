@@ -14,15 +14,10 @@ public class HomeController {
         return "home";
     }
 
-//    @RequestMapping("/members/joinView")
-//    public String joinView(){
-//        log.info("joinView controller");
-//        return "createMemberForm";
-//    }
+    @RequestMapping("/members/join")
+    public String createMemberForm(){
+        log.info("join controller");
+        return "createMemberForm";
+    }
 
-//    @RequestMapping("/login")
-//    public String login(){
-//        log.info("login controller");
-//        return "fragments/login";
-//    }
 }
