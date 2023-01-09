@@ -1,9 +1,8 @@
 package how_are_you_project.how_are_you.member.controller;
 
-import how_are_you_project.how_are_you.dto.MemberJoinDto;
+import how_are_you_project.how_are_you.dto.JoinMemberDto;
 import how_are_you_project.how_are_you.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +17,15 @@ import javax.validation.Valid;
 public class MemberController {
     private final MemberService memberService;
     @PostMapping("/join")
-    public void memberJoin(@Valid @RequestBody MemberJoinDto memberJoinDto) {
-        System.out.println(memberJoinDto);
-        memberService.memberJoin(memberJoinDto);
+    public void joinMember(@Valid @RequestBody JoinMemberDto joinMemberDto) {
+        System.out.println(joinMemberDto);
+        memberService.joinMember(joinMemberDto);
+    }
+
+    @PostMapping("/login")
+    public void loginMember(@RequestBody JoinMemberDto joinMemberDto) {
+        System.out.println(joinMemberDto);
+        memberService.joinMember(joinMemberDto);
     }
 
 

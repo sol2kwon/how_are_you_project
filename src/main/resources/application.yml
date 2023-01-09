@@ -35,5 +35,9 @@ logging:
 server:
   port: 8080
 
+
 aes128:
-  key: testkeytestkeyte
+  key: testtesttesttest
+
+
+

@@ -1,7 +1,7 @@
 package how_are_you_project.how_are_you.member.service;
 
-import how_are_you_project.how_are_you.cipher.Aes128;
-import how_are_you_project.how_are_you.dto.MemberJoinDto;
+import how_are_you_project.how_are_you.security.cipher.Aes128;
+import how_are_you_project.how_are_you.dto.JoinMemberDto;
 import how_are_you_project.how_are_you.member.domain.Member;
 import how_are_you_project.how_are_you.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,14 +18,14 @@ public class MemberService {
     private final Aes128 aes128;
 
     @Transactional
-    public void memberJoin(MemberJoinDto memberJoinDto){
-        validateDuplicateMember(memberJoinDto);
+    public void joinMember(JoinMemberDto joinMemberDto){
+        validateDuplicateMember(joinMemberDto);
         Member joinMember = Member.builder()
-                .loginId(memberJoinDto.getLoginId())
-                .loginPassword(aes128.encrypt(memberJoinDto.getLoginPassword())) // TODO 암호화 해야함
-                .birth(memberJoinDto.getBirth())
-                .email(memberJoinDto.getEmail())
-                .name(memberJoinDto.getName())
+                .loginId(joinMemberDto.getLoginId())
+                .loginPassword(aes128.encrypt(joinMemberDto.getLoginPassword())) // TODO 암호화 해야함
+                .birth(joinMemberDto.getBirth())
+                .email(joinMemberDto.getEmail())
+                .name(joinMemberDto.getName())
                 .build();
         memberRepository.save(joinMember);
 
@@ -37,8 +37,8 @@ public class MemberService {
 //        String decrypted = aes128.decrypt(encrypted);
 //        System.out.println(decrypted);
     }
-    private void validateDuplicateMember(MemberJoinDto memberJoinDto){
-        List<Member> findMembers = memberRepository.findByName(memberJoinDto.getLoginId());
+    private void validateDuplicateMember(JoinMemberDto joinMemberDto){
+        List<Member> findMembers = memberRepository.findByName(joinMemberDto.getLoginId());
         if (!findMembers.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }

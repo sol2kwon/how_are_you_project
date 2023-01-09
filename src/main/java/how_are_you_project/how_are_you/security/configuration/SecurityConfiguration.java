@@ -1,8 +1,10 @@
-package how_are_you_project.how_are_you.configuration;
+package how_are_you_project.how_are_you.security.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,21 +31,13 @@ public class SecurityConfiguration  {
             .formLogin().disable();
         http.sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeRequests()
+                .antMatchers("/members/join").permitAll()
+                .antMatchers("/members/login").permitAll()
+                .anyRequest().authenticated();
+        http.exceptionHandling().accessDeniedPage("/members/login");
         return http.build();
     }
 
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers(HttpMethod.OPTIONS,"*/**").antMatchers("/");//첫번째 화면은 누구든지 볼 수 있게 한다.
-//    }
-//    @Override
-//    public void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.authorizeRequests()
-//                .antMatchers("/users/join").permitAll()
-//                .antMatchers("/users/login").permitAll()
-//                .anyRequest().authenticated();
-//        http.exceptionHandling().accessDeniedPage("/users/login");
-//    }
+
 }

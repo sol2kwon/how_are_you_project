@@ -1,7 +1,12 @@
-package how_are_you_project.how_are_you.cipher;
+package how_are_you_project.how_are_you.security.cipher;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
@@ -20,7 +25,7 @@ import java.util.function.Predicate;
  * @author https://sunghs.tistory.com
  * @see <a href="https://github.com/sunghs/java-utils">source</a>
  */
-@Component
+@Configuration
 public class Aes128 {
     private static final Charset ENCODING_TYPE = StandardCharsets.UTF_8;
 
@@ -32,7 +37,7 @@ public class Aes128 {
 
     private IvParameterSpec ivParameterSpec;
 
-    public Aes128(@Value("aes128.key") String key) {
+    public Aes128(@Value("${aes128.key}") String key) {
         validation(key);
         try {
             byte[] keyBytes = key.getBytes(ENCODING_TYPE);
@@ -66,6 +71,5 @@ public class Aes128 {
                 .filter(Predicate.not(s -> s.length() != 16))
                 .orElseThrow(IllegalArgumentException::new);
     }
-
 
 }

@@ -2,10 +2,8 @@ package how_are_you_project.how_are_you.member.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import how_are_you_project.how_are_you.question.domain.MemberQuestion;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +13,7 @@ import java.util.List;
 @Table(name = "member")
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Member {
 
     @Id
@@ -49,8 +48,8 @@ public class Member {
         this.email = email;
     }
 
-    //
-//    public List<Role> roles;
+    @ElementCollection(fetch = FetchType.EAGER) //?eager 확인
+    public List <Role> roles;
 
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "board")//읽기전용
