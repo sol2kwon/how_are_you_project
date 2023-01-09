@@ -12,16 +12,23 @@ import java.util.Optional;
 @RequiredArgsConstructor
 
 public class MemberRepository {
+
     private final EntityManager em;
     public void save(Member member) {
         em.persist(member);
     }
-    public List<Member> findByName(String name){
-        return em.createQuery("select m from Member m where m.name = :name", Member.class)
-                .setParameter("name",name).getResultList();
-    }
 
-    
+    public List <Member> findByLoginId(String loginId){
+        return em.createQuery("select m from Member m where m.loginId = :loginId", Member.class)
+                .setParameter("loginId",loginId).getResultList();
+
+    }
+    public List <Member> findByLoginMember(String loginId, String loginPassword){
+        return em.createQuery("select m.loginId, m.loginPassword from Member m where m.loginId = :loginId ", Member.class)
+                .setParameter("loginId",loginId).getResultList();
+    };
+
+
 
 
 

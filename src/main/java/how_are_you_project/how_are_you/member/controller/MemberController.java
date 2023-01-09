@@ -1,6 +1,7 @@
 package how_are_you_project.how_are_you.member.controller;
 
 import how_are_you_project.how_are_you.dto.JoinMemberDto;
+import how_are_you_project.how_are_you.dto.LoginMemberDto;
 import how_are_you_project.how_are_you.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,9 +24,8 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public void loginMember(@RequestBody JoinMemberDto joinMemberDto) {
-        System.out.println(joinMemberDto);
-        memberService.joinMember(joinMemberDto);
+    public void loginMember(@RequestBody LoginMemberDto loinMemberDto) {
+        memberService.loginMember(loinMemberDto);
     }
 
 

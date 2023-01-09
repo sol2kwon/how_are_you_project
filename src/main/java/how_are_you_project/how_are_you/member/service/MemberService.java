@@ -1,5 +1,6 @@
 package how_are_you_project.how_are_you.member.service;
 
+import how_are_you_project.how_are_you.dto.LoginMemberDto;
 import how_are_you_project.how_are_you.security.cipher.Aes128;
 import how_are_you_project.how_are_you.dto.JoinMemberDto;
 import how_are_you_project.how_are_you.member.domain.Member;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true) //따로 설정한 트랜잭셔널 먼저 동작
@@ -38,11 +40,13 @@ public class MemberService {
 //        System.out.println(decrypted);
     }
     private void validateDuplicateMember(JoinMemberDto joinMemberDto){
-        List<Member> findMembers = memberRepository.findByName(joinMemberDto.getLoginId());
+        List<Member> findMembers = memberRepository.findByLoginId(joinMemberDto.getLoginId());
         if (!findMembers.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
 
-
+    public void loginMember(LoginMemberDto loinMemberDto) {
+        List <Member> findMember = memberRepository.findByLoginMember(loinMemberDto.getLoginId(), loinMemberDto.getLoginPassword());
+    }
 }
