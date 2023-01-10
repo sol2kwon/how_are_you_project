@@ -47,6 +47,8 @@ public class MemberService {
     }
 
     public void loginMember(LoginMemberDto loinMemberDto) {
-        List <Member> findMember = memberRepository.findByLoginMember(loinMemberDto.getLoginId(), loinMemberDto.getLoginPassword());
+        List <Member> findMemberPassword = memberRepository.findByPassword(loinMemberDto.getLoginId());
+        System.out.println(findMemberPassword);
+        System.out.println("뭐가 담겼을까?@@@@@@@@");
     }
 }

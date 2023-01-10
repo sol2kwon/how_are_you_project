@@ -24,7 +24,9 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public void loginMember(@RequestBody LoginMemberDto loinMemberDto) {
+    public void loginMember(@Valid @RequestBody LoginMemberDto loinMemberDto) {
+        System.out.println(loinMemberDto);
+        System.out.println("입장 @@@@@@@@@@@@@@@@@2");
         memberService.loginMember(loinMemberDto);
     }
 

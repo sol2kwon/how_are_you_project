@@ -31,11 +31,11 @@ public class SecurityConfiguration  {
             .formLogin().disable();
         http.sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests()
-                .antMatchers("/members/join").permitAll()
-                .antMatchers("/members/login").permitAll()
-                .anyRequest().authenticated();
-        http.exceptionHandling().accessDeniedPage("/members/login");
+//        http.authorizeRequests()
+//                .antMatchers("/members/join").permitAll()
+//                .antMatchers("/members/login").permitAll()
+//                .anyRequest().authenticated();
+//        http.exceptionHandling().accessDeniedPage("/members/login");
         return http.build();
     }
 

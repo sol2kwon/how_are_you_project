@@ -48,6 +48,7 @@ public class Member {
         this.email = email;
     }
 
+
     @ElementCollection(fetch = FetchType.EAGER) //?eager 확인
     public List <Role> roles;
 

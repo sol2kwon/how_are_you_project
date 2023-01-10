@@ -2,6 +2,7 @@ package how_are_you_project.how_are_you.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 

@@ -1,5 +1,6 @@
 $(document).ready(function() {
     inputError();
+
     });
 
 /**
@@ -46,6 +47,28 @@ function inputError(){
                 $(this).siblings('p').addClass('fontBlue')
             }
     });
+}
+
+/**
+ * 로그인
+ * */
+function loginMember() {
+    const loginId = $('#loginId').val();
+    console
+    const loginPassword = $('#loginPassword').val();
+
+    alert("js 전송")
+
+    axios.post("/members/login", {
+        loginId: loginId,
+        loginPassword: loginPassword,
+    }) .then(function (response) {
+        location.href= "/";
+        console.log(response);
+    })
+        .catch(function (error) {
+            alert(error);
+        });
 }
 
 
