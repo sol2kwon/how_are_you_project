@@ -27,18 +27,10 @@ public class MemberController {
 
     @PostMapping("/login")
     public LoginMemberResponse loginMember(@Valid @RequestBody LoginMemberDto loinMemberDto) {
-        System.out.println(loinMemberDto);
-        System.out.println("입장 @@@@@@@@@@@@@@@@@2");
         LoginMemberResponse loginMemberResponse = memberService.loginMember(loinMemberDto);
-        System.out.println(loginMemberResponse);
         return loginMemberResponse;
     }
 
-    @GetMapping("/logout")
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
-        return "redirect:/";
-    }
 
 //    @GetMapping("/login")
 //    public LoginMemberResponse myPageMember(@Valid @RequestBody LoginMemberDto loinMemberDto) {

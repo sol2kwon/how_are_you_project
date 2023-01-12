@@ -1,7 +1,7 @@
 $(document).ready(function() {
     inputError();
-
-    });
+    settingNavbar();
+});
 
 /**
  * 회원가입
@@ -56,40 +56,68 @@ function loginMember() {
     const loginId = $('#loginId').val();
     const loginPassword = $('#loginPassword').val();
 
-    alert("js 전송")
-
     axios.post("/members/login", {
         loginId: loginId,
         loginPassword: loginPassword,
-    }) .then(function (response) {
-        // location.href= "/";
-        //뭘가지고 로그인 상태 유지할건지 생각해야함
-        navHtml();
-        console.log(response);
-        alert("성공?")
-    })
-        .catch(function (error) {
-            alert(error);
-        });
+    }).then(function (response) {
+        login(response);
+        location.href= "/";
+    }).catch(function (error) {
+        alert(error);
+    });
 }
 
 /**
  * 로그인시 네비바
  * */
-function navHtml() {
-    let html ='';
-    html +=
-        '<a href="#about" class="w3-bar-item w3-button">About</a>'+
-        '<a href="#menu" class="w3-bar-item w3-button">Menu</a>'+
-        '<a href="#contact" class="w3-bar-item w3-button">Contact</a>'+
-        '<a href="/templates/myPage.html" class="w3-bar-item w3-button">마이페이지</a>'+
-        '<a href="#id01" class="w3-bar-item w3-button">로그아웃</a>'
+function settingNavbar() {
+    if (loginCheck()) {
+        let html ='';
 
-    $("#siderBar").empty();
-    $("#siderBar").html(html);
+        html +=
+            '<a href="#about" class="w3-bar-item w3-button">About</a>' +
+            '<a href="#menu" class="w3-bar-item w3-button">Menu</a>' +
+            '<a href="#contact" class="w3-bar-item w3-button">Contact</a>' +
+            '<a href="/" class="w3-bar-item w3-button">마이페이지</a>' +
+            '<a href="#" class="w3-bar-item w3-button" onclick="logout();">로그아웃</a>'
 
+        $("#siderBar").empty();
+        $("#siderBar").html(html);
+    }
 }
 
+function loginCheck() {
+    let check = Boolean(false);
+    if (localStorage.getItem('loginInfo') != null){
+        console.log('로그인 중인 사용자');
+        check = true;
+    } else {
+        console.log('로그인 중이 아닌 사용자');
+    }
+    return check;
+}
 
+function login(loginResponse) {
+    const loginInfo = {
+        loginId: loginResponse.data.loginId,
+        token: loginResponse.data.token
+    };
+    localStorage.setItem('loginInfo', JSON.stringify(loginInfo));
+}
+
+function logout() {
+    localStorage.removeItem('loginInfo');
+    location.href = '/';
+}
+
+// 로그인 응답에 loginId, success, message, token만 있음
+// 여기에 memberNo를 추가
+// 프론트의 loginInfo 추가
+
+// members/{2}
+
+//마이페이지
+// 회원정보 가져오기, 수정/저장
+//
 
 
