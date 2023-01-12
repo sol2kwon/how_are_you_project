@@ -54,7 +54,6 @@ function inputError(){
  * */
 function loginMember() {
     const loginId = $('#loginId').val();
-    console
     const loginPassword = $('#loginPassword').val();
 
     alert("js 전송")
@@ -63,13 +62,34 @@ function loginMember() {
         loginId: loginId,
         loginPassword: loginPassword,
     }) .then(function (response) {
-        location.href= "/";
+        // location.href= "/";
+        //뭘가지고 로그인 상태 유지할건지 생각해야함
+        navHtml();
         console.log(response);
+        alert("성공?")
     })
         .catch(function (error) {
             alert(error);
         });
 }
+
+/**
+ * 로그인시 네비바
+ * */
+function navHtml() {
+    let html ='';
+    html +=
+        '<a href="#about" class="w3-bar-item w3-button">About</a>'+
+        '<a href="#menu" class="w3-bar-item w3-button">Menu</a>'+
+        '<a href="#contact" class="w3-bar-item w3-button">Contact</a>'+
+        '<a href="#contact" class="w3-bar-item w3-button">마이페이지</a>'+
+        '<a href="#id01" class="w3-bar-item w3-button">로그아웃</a>'
+
+    $("#siderBar").empty();
+    $("#siderBar").html(html);
+
+}
+
 
 
 

@@ -31,6 +31,10 @@ public class SecurityConfiguration  {
             .formLogin().disable();
         http.sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http
+            .logout()
+            .logoutSuccessUrl("/") // 로그아웃 성공시 리다이렉트 주소
+            .invalidateHttpSession(true); // 로그아웃 이후 세션 전체 삭제 여부
 //        http.authorizeRequests()
 //                .antMatchers("/members/join").permitAll()
 //                .antMatchers("/members/login").permitAll()

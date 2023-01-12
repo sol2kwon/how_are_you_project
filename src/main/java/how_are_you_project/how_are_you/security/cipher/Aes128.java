@@ -59,10 +59,14 @@ public class Aes128 {
         }
     }
 
-    public String decrypt(final String str) throws Exception {
-        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
-        byte[] decoded = Base64.getDecoder().decode(str.getBytes(ENCODING_TYPE));
-        return new String(cipher.doFinal(decoded), ENCODING_TYPE);
+    public String decrypt(final String str)  {
+        try {
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
+            byte[] decoded = Base64.getDecoder().decode(str.getBytes(ENCODING_TYPE));
+            return new String(cipher.doFinal(decoded), ENCODING_TYPE);
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     private void validation(final String key) {

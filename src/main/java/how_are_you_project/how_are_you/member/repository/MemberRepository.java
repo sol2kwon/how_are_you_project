@@ -5,6 +5,7 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import how_are_you_project.how_are_you.dto.LoginMemberDto;
+import how_are_you_project.how_are_you.dto.LoginMemberResponse;
 import how_are_you_project.how_are_you.member.domain.Member;
 import how_are_you_project.how_are_you.member.domain.QMember;
 import lombok.RequiredArgsConstructor;
@@ -34,16 +35,13 @@ public class MemberRepository {
                 .setParameter("loginId",loginId).getResultList();
 
     }
-    public List <Member> findByPassword(String loginId){
+    public Member findByPassword(String loginId){
         System.out.println("비밀번호 담겼을까?@@@@@@@@");
 
         return queryFactory
-                .select(Projections.constructor(Member.class,
-                        member.loginId,
-                        member.loginPassword))
-                .from(member)
+                .selectFrom(member)
                 .where(loginIdEq(loginId))
-                .fetch();
+                .fetchOne();
 
     }
 
