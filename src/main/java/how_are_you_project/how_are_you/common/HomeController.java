@@ -20,4 +20,10 @@ public class HomeController {
         return "createMemberForm";
     }
 
+    @RequestMapping("/members/myPage")
+    public String myPage(){
+        log.info("myPage controller");
+        return "myPage";
+    }
+
 }

@@ -82,7 +82,7 @@ function navHtml() {
         '<a href="#about" class="w3-bar-item w3-button">About</a>'+
         '<a href="#menu" class="w3-bar-item w3-button">Menu</a>'+
         '<a href="#contact" class="w3-bar-item w3-button">Contact</a>'+
-        '<a href="#contact" class="w3-bar-item w3-button">마이페이지</a>'+
+        '<a href="/templates/myPage.html" class="w3-bar-item w3-button">마이페이지</a>'+
         '<a href="#id01" class="w3-bar-item w3-button">로그아웃</a>'
 
     $("#siderBar").empty();

@@ -26,11 +26,21 @@ logging:
 # org.hibernate.type: trace #스프링 부트 2.x, hibernate5
 # org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6
 
-#security:
-#  jwt:
-#    token:
-#      security-key:secret-key
-#      expiration-length:3600000
+security:
+  jwt:
+    token:
+      security-key: secret-key
+      expiration-length: 3600
+
+# 시간 관련
+#3600000ms
+#3600s
+#60m
+#1h
+#
+#1h => 60m
+#1m => 60s
+#1s => 1000ms
 
 server:
   port: 8080

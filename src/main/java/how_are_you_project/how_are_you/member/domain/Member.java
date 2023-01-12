@@ -41,12 +41,13 @@ public class Member {
     private List<MemberQuestion> memberQuestion = new ArrayList<>();
 
     @Builder
-    public Member(String loginId, String loginPassword, String name, String birth, String email) {
+    public Member(String loginId, String loginPassword, String name, String birth, String email, List<Role>roles) {
         this.loginId = loginId;
         this.loginPassword = loginPassword;
         this.name = name;
         this.birth = birth;
         this.email = email;
+        this.roles = roles;
     }
 
 

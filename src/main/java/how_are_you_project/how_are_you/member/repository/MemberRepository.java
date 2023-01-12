@@ -26,6 +26,9 @@ public class MemberRepository {
     private final EntityManager em;
     private final JPAQueryFactory queryFactory;
 
+    /**
+     * 회원정보 저장
+     * */
     public void save(Member member) {
         em.persist(member);
     }
@@ -35,6 +38,10 @@ public class MemberRepository {
                 .setParameter("loginId",loginId).getResultList();
 
     }
+
+    /**
+     * 해당 아이디의 정보 조회
+     * */
     public Member findByPassword(String loginId){
         System.out.println("비밀번호 담겼을까?@@@@@@@@");
 

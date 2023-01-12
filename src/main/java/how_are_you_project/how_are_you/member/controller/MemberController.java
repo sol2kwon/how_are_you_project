@@ -40,6 +40,13 @@ public class MemberController {
         return "redirect:/";
     }
 
+//    @GetMapping("/login")
+//    public LoginMemberResponse myPageMember(@Valid @RequestBody LoginMemberDto loinMemberDto) {
+//        LoginMemberResponse loginMemberResponse = memberService.loginMember(loinMemberDto);
+//        System.out.println(loginMemberResponse);
+//        return loginMemberResponse;
+//    }
+
 
 
 

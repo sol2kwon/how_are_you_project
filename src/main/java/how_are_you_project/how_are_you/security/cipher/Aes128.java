@@ -25,7 +25,7 @@ import java.util.function.Predicate;
  * @author https://sunghs.tistory.com
  * @see <a href="https://github.com/sunghs/java-utils">source</a>
  */
-@Configuration
+@Component
 public class Aes128 {
     private static final Charset ENCODING_TYPE = StandardCharsets.UTF_8;
 
