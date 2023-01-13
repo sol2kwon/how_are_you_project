@@ -8,7 +8,11 @@ import javax.validation.constraints.NotEmpty;
 @ToString
 
 public class LoginMemberResponse {
+
+    private Long memberId;
+
     private boolean success;
+
     private String loginId;
 
     private String token;
@@ -19,8 +23,9 @@ public class LoginMemberResponse {
         return new LoginMemberResponse();
     }
 
-    public static LoginMemberResponse success(String loginId, String token) {
+    public static LoginMemberResponse success(Long memberId, String loginId, String token) {
         LoginMemberResponse response = new LoginMemberResponse();
+        response.memberId = memberId;
         response.success = true;
         response.loginId = loginId;
         response.token = token;

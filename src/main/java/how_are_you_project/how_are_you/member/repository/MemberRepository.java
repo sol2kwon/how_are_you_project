@@ -43,8 +43,6 @@ public class MemberRepository {
      * 해당 아이디의 정보 조회
      * */
     public Member findByPassword(String loginId){
-        System.out.println("비밀번호 담겼을까?@@@@@@@@");
-
         return queryFactory
                 .selectFrom(member)
                 .where(loginIdEq(loginId))
@@ -58,6 +56,14 @@ public class MemberRepository {
 
     private BooleanExpression loginPasswordEq(String loginPassword){
         return StringUtils.hasText(loginPassword) ? member.loginPassword.eq(loginPassword) : null;
+    }
+
+    public Member myPageMember(Long memberId){
+        return queryFactory
+                .selectFrom(member)
+                .where(member.memberId.eq(memberId))
+                .fetchOne();
+
     }
 
 

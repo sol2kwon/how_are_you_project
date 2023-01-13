@@ -78,14 +78,17 @@ function settingNavbar() {
             '<a href="#about" class="w3-bar-item w3-button">About</a>' +
             '<a href="#menu" class="w3-bar-item w3-button">Menu</a>' +
             '<a href="#contact" class="w3-bar-item w3-button">Contact</a>' +
-            '<a href="/" class="w3-bar-item w3-button">마이페이지</a>' +
-            '<a href="#" class="w3-bar-item w3-button" onclick="logout();">로그아웃</a>'
+            '<a class="w3-bar-item w3-button" onclick="selectMember();">마이페이지</a>' +
+            '<a href="/" class="w3-bar-item w3-button" onclick="logout();">로그아웃</a>'
 
         $("#siderBar").empty();
         $("#siderBar").html(html);
     }
 }
 
+/**
+ * 로그인 여부 판단
+ * */
 function loginCheck() {
     let check = Boolean(false);
     if (localStorage.getItem('loginInfo') != null){
@@ -97,24 +100,77 @@ function loginCheck() {
     return check;
 }
 
+/**
+ * 로컬스토리지 사용자 정보 저장
+ * */
 function login(loginResponse) {
     const loginInfo = {
         loginId: loginResponse.data.loginId,
-        token: loginResponse.data.token
+        token: loginResponse.data.token,
+        memberId: loginResponse.data.memberId
     };
+
     localStorage.setItem('loginInfo', JSON.stringify(loginInfo));
 }
 
+/**
+ * 로그아웃시 로컬스토리지 사용자 정보 삭제
+ * */
 function logout() {
     localStorage.removeItem('loginInfo');
     location.href = '/';
 }
 
-// 로그인 응답에 loginId, success, message, token만 있음
-// 여기에 memberNo를 추가
-// 프론트의 loginInfo 추가
+/**
+ * 사용자 정보 조회
+ * */
+function selectMember(){
+    console.log("selectMember  입장")
+    const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
 
-// members/{2}
+        axios.get("/members/"+ memberId)
+            .then(function (response) {
+                location.href = '/members/myPage';
+                settingMyPageMember(response);
+
+
+    })
+        .catch(function (error) {
+            alert(error);
+        });
+
+
+}
+
+function settingMyPageMember(response){
+    const myPageMemberInfo = {
+        memberId: response.data.memberId,
+        loginId: response.data.loginId,
+        name: response.data.name,
+        birth: response.data.birth,
+        email: response.data.email
+    };
+    // const myPageMember = JSON.parse(myPageMemberInfo);
+
+    $('#loginId').val(response.data.loginId)
+    $('#name').val(response.data.name)
+    $('#birth').val(response.data.birth)
+    // $('#email').val(response.data.email)
+
+}
+
+/**
+ * 사용자 정보 업데이트
+ * */
+function updateMember(){
+
+}
+
+// 로그인 응답에 loginId, success, message, token만 있음 -완료
+// 여기에 memberNo를 추가 -완료
+// 프론트의 loginInfo 추가 -완료
+
+// members/{2} -완료
 
 //마이페이지
 // 회원정보 가져오기, 수정/저장

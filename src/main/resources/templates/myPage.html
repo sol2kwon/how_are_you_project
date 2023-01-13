@@ -1,53 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="/js/member.js"></script>
 <body>
+<div th:replace="fragments/siderBar :: siderBar"></div>
 
-<form action="/action_page.php" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
-  <h2 class="w3-center">Contact Us</h2>
+<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-right" style="width:200px;right:0; padding: 30px 16px;" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+  <a href="#" class="w3-bar-item w3-button">나의 정보</a>
+  <a href="#" class="w3-bar-item w3-button">나의 아이템</a>
+  <a href="#" class="w3-bar-item w3-button">나의 질문답변</a>
+</div>
 
-  <div class="w3-row w3-section">
-    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
-    <div class="w3-rest">
-      <input class="w3-input w3-border" name="first" type="text" placeholder="First Name">
+<div class="w3-main" style="margin-right:200px; margin-top: 53px">
+  <div class="w3-teal">
+    <button class="w3-button w3-teal w3-xlarge w3-right w3-hide-large" onclick="w3_open()">&#9776;</button>
+    <div class="w3-container">
+      <h1>My Page</h1>
     </div>
   </div>
 
-  <div class="w3-row w3-section">
-    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
-    <div class="w3-rest">
-      <input class="w3-input w3-border" name="last" type="text" placeholder="Last Name">
+  <div class="w3-container">
+
+
+    <p><label>아이디</label>
+      <input class="w3-input w3-border" id="loginId" name="last" type="text"></p>
+
+    <p><label>비밀번호</label>
+    <div class="w3-row-padding">
+      <div class="w3-half">
+        <label>First Name</label>
+        <input class="w3-input w3-border" type="text" placeholder="Two">
+      </div>
+      <div class="w3-half">
+        <label>Last Name</label>
+        <input class="w3-input w3-border" type="text" placeholder="Three">
+      </div>
     </div>
+
+    <p><label>이름</label>
+      <input class="w3-input w3-border" id="name" name="first" type="text"></p>
+
+    <p><label>생년월일</label>
+      <input class="w3-input w3-border" id="birth" name="last" type="text"></p>
+
+    <p><label>이메일</label>
+    <div class="w3-row-padding" id="email">
+      <div class="w3-half">
+        <label>First Name</label>
+        <input class="w3-input w3-border"  type="text" placeholder="Two">
+      </div>
+      <div class="w3-half">
+        <label>Last Name</label>
+        <input class="w3-input w3-border" type="text" placeholder="Three">
+      </div>
+    </div>
+    <button class="w3-button w3-round-xlarge w3-teal" onclick="updateMember();">수정</button>
   </div>
 
-  <div class="w3-row w3-section">
-    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
-    <div class="w3-rest">
-      <input class="w3-input w3-border" name="email" type="text" placeholder="Email">
-    </div>
-  </div>
+</div>
 
-  <div class="w3-row w3-section">
-    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-phone"></i></div>
-    <div class="w3-rest">
-      <input class="w3-input w3-border" name="phone" type="text" placeholder="Phone">
-    </div>
-  </div>
+<script>
+  function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
 
-  <div class="w3-row w3-section">
-    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
-    <div class="w3-rest">
-      <input class="w3-input w3-border" name="message" type="text" placeholder="Message">
-    </div>
-  </div>
-
-  <p class="w3-center">
-    <button class="w3-button w3-section w3-blue w3-ripple"> Send </button>
-  </p>
-</form>
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+</script>
 
 </body>
 </html>

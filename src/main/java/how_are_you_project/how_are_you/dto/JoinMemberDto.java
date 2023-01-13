@@ -1,6 +1,7 @@
 package how_are_you_project.how_are_you.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @AllArgsConstructor
+@Builder
 public class JoinMemberDto {
     @NotEmpty(message = "회원 아이디는 필수 입니다.")
     private String loginId;

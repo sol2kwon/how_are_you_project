@@ -2,27 +2,22 @@ package how_are_you_project.how_are_you.member.service;
 
 import how_are_you_project.how_are_you.dto.LoginMemberDto;
 import how_are_you_project.how_are_you.dto.LoginMemberResponse;
+import how_are_you_project.how_are_you.dto.MyPageMemberResponseDto;
 import how_are_you_project.how_are_you.member.domain.Role;
 import how_are_you_project.how_are_you.security.cipher.Aes128;
 import how_are_you_project.how_are_you.dto.JoinMemberDto;
 import how_are_you_project.how_are_you.member.domain.Member;
 import how_are_you_project.how_are_you.member.repository.MemberRepository;
 import how_are_you_project.how_are_you.utils.TimeUtils;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -56,7 +51,7 @@ public class MemberService {
 
         Member joinMember = Member.builder()
                 .loginId(joinMemberDto.getLoginId())
-                .loginPassword(aes128.encrypt(joinMemberDto.getLoginPassword())) // TODO 암호화 해야함
+                .loginPassword(aes128.encrypt(joinMemberDto.getLoginPassword())) //암호화
                 .birth(joinMemberDto.getBirth())
                 .email(joinMemberDto.getEmail())
                 .name(joinMemberDto.getName())
@@ -91,9 +86,8 @@ public class MemberService {
                             .signWith(SignatureAlgorithm.HS512,jwtSecretKey)
                             .compact();
                     log.info("로그인 성공. 토큰 : {}, 테스트: {}", token, 123123);
-                    //로그인 성공 상태 넣어줄지 생각
-                    //비번도 반환해줘야하는지?
-                    return LoginMemberResponse.success(member.getLoginId(),token);
+
+                    return LoginMemberResponse.success(member.getMemberId(),member.getLoginId(),token);
                 }
                 // ID & PW 체크 실패 시
                 else {
@@ -109,6 +103,14 @@ public class MemberService {
         // loginId로 확인 안될때, 로그인 id로 회원이 존재하지않을때
         return LoginMemberResponse.fail("존제하지 않는 회원입니다. " + loinMemberDto.getLoginId());
     }
+
+    public MyPageMemberResponseDto myPageMember(Long memberId) {
+        Member member = memberRepository.myPageMember(memberId);
+
+        return MyPageMemberResponseDto.myPageMember(member.getMemberId(), member.getLoginId(), member.getName(), member.getBirth(), member.getEmail());
+
+    }
+
 
 }
 
