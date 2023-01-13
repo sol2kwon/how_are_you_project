@@ -1,6 +1,15 @@
+const count = 0;
+
 $(document).ready(function() {
     inputError();
     settingNavbar();
+
+    if (urlCheck()){
+        selectMember()
+    };
+
+
+
 });
 
 /**
@@ -21,7 +30,6 @@ function joinMember() {
         birth: birth,
     }) .then(function (response) {
         location.href= "/";
-        console.log(response);
     })
         .catch(function (error) {
             alert(error);
@@ -41,7 +49,6 @@ function inputError(){
                 $(this).siblings('p').addClass('fontError')
 
             }else {
-                console.log($(this).siblings('p').html())
                 $(this).siblings('p').text('사용할 수 있습니다.')
                 $(this).siblings('p').removeClass('fontError')
                 $(this).siblings('p').addClass('fontBlue')
@@ -71,14 +78,14 @@ function loginMember() {
  * 로그인시 네비바
  * */
 function settingNavbar() {
-    if (loginCheck()) {
+    if (loginCheck() ) {
         let html ='';
 
         html +=
             '<a href="#about" class="w3-bar-item w3-button">About</a>' +
             '<a href="#menu" class="w3-bar-item w3-button">Menu</a>' +
             '<a href="#contact" class="w3-bar-item w3-button">Contact</a>' +
-            '<a class="w3-bar-item w3-button" onclick="selectMember();">마이페이지</a>' +
+            '<a href="/members/myPage" class="w3-bar-item w3-button">마이페이지</a>' +
             '<a href="/" class="w3-bar-item w3-button" onclick="logout();">로그아웃</a>'
 
         $("#siderBar").empty();
@@ -125,19 +132,20 @@ function logout() {
  * 사용자 정보 조회
  * */
 function selectMember(){
-    console.log("selectMember  입장")
     const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
 
-        axios.get("/members/"+ memberId)
+        axios.get("/members/myPage/"+ memberId)
             .then(function (response) {
-                location.href = '/members/myPage';
                 settingMyPageMember(response);
+            })
+            .catch(function (error) {
+                alert(error);
+            });
 
 
-    })
-        .catch(function (error) {
-            alert(error);
-        });
+
+
+
 
 
 }
@@ -163,6 +171,27 @@ function settingMyPageMember(response){
  * 사용자 정보 업데이트
  * */
 function updateMember(){
+
+    axios.put("/members/myPage/")
+        .then(function (response) {
+            settingMyPageMember(response);
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+
+}
+
+function urlCheck(){
+    const myPage = 'http://localhost:8080/members/myPage'
+    const nowPage = document.location.href
+    let check = Boolean(false);
+
+    if (myPage === nowPage){
+        check = true;
+    }
+    return check;
+
 
 }
 

@@ -34,7 +34,7 @@ public class MemberController {
         return memberService.loginMember(loinMemberDto);
     }
 
-    @GetMapping("/{memberId}")
+    @GetMapping("/myPage/{memberId}")
     public MyPageMemberResponseDto myPageMember(@PathVariable("memberId") Long memberId ) {
         return memberService.myPageMember(memberId);
     }

@@ -85,7 +85,6 @@ public class MemberService {
                             .setExpiration(TimeUtils.toDate(expiration)) //만료일자
                             .signWith(SignatureAlgorithm.HS512,jwtSecretKey)
                             .compact();
-                    log.info("로그인 성공. 토큰 : {}, 테스트: {}", token, 123123);
 
                     return LoginMemberResponse.success(member.getMemberId(),member.getLoginId(),token);
                 }
