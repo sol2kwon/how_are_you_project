@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="/js/member.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="/css/post.css">
+
+</head>
+
+<body>
+<div th:replace="fragments/siderBar :: siderBar"></div>
+
+<!--<div class="container">-->
+<!--    <div class="rotate5 notes">-->
+<!--        <div class="postit">-->
+<!--            <p class="postitText">-->
+<!--                Here is my postit content Here is my postit contentdswaqffw-->
+<!--            </p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="w3-panel w3-leftbar w3-sand">-->
+<!--    <p class="w3-xxlarge w3-serif">-->
+<!--        <i>"Make it as simple as possible, but not simpler."</i></p>-->
+<!--    <p>Albert Einstein</p>-->
+<!--</div>-->
+
+<div class="w3-card-4"style="margin-top: 56px;">
+
+    <header class="w3-container w3-light-grey">
+        <h3>John Doe</h3>
+    </header>
+
+    <div class="w3-container">
+        <p>1 new friend request</p>
+        <hr>
+        <img src="/css2/file.jpg" alt="Avatar" class="w3-left w3-circle" style="height: 200px">
+        <p>President/CEO at Mighty Schools...</p>
+    </div>
+
+    <div class="w3-panel w3-pale-blue w3-leftbar w3-border-blue" style="height: 300px">
+        <p>London is the most populous city in the United Kingdom,
+            with a metropolitan area of over 9 million inhabitants.</p>
+    </div>
+
+    <button class="w3-button w3-block w3-dark-grey">답장하기</button>
+
+</div>
+</body>
+</html>

@@ -13,6 +13,8 @@ public class MyPageMemberResponseDto {
 
     private String loginPassword;
 
+    private String checkPassword;
+
     private String name;
 
     private String birth;
@@ -31,5 +33,25 @@ public class MyPageMemberResponseDto {
         myPageMember.birth = birth;
         myPageMember.email = email;
         return myPageMember;
+    }
+//    /**
+//     * 이메일 변경
+//     * */
+//
+//    public static MyPageMemberResponseDto updateEmail(Long memberId, String email) {
+//        MyPageMemberResponseDto updateEmail = new MyPageMemberResponseDto();
+//        updateEmail.memberId = memberId;
+//        updateEmail.email = email;
+//        return updateEmail;
+//    }
+    /**
+     * 비밀번호 변경
+     * */
+    public static MyPageMemberResponseDto updatePassword(Long memberId, String loginPassword, String checkPassword) {
+        MyPageMemberResponseDto updatePassword = new MyPageMemberResponseDto();
+        updatePassword.memberId = memberId;
+        updatePassword.loginPassword = loginPassword;
+        updatePassword.checkPassword = checkPassword;
+        return updatePassword;
     }
 }

@@ -84,7 +84,7 @@ function settingNavbar() {
         html +=
             '<a href="#about" class="w3-bar-item w3-button">About</a>' +
             '<a href="#menu" class="w3-bar-item w3-button">Menu</a>' +
-            '<a href="#contact" class="w3-bar-item w3-button">Contact</a>' +
+            '<a href="/members/q" class="w3-bar-item w3-button">Contact</a>' +
             '<a href="/members/myPage" class="w3-bar-item w3-button">마이페이지</a>' +
             '<a href="/" class="w3-bar-item w3-button" onclick="logout();">로그아웃</a>'
 
@@ -151,31 +151,61 @@ function selectMember(){
 }
 
 function settingMyPageMember(response){
-    const myPageMemberInfo = {
-        memberId: response.data.memberId,
-        loginId: response.data.loginId,
-        name: response.data.name,
-        birth: response.data.birth,
-        email: response.data.email
-    };
-    // const myPageMember = JSON.parse(myPageMemberInfo);
+    console.log(response.data.email)
+    const email =response.data.email.split('@')
 
     $('#loginId').val(response.data.loginId)
     $('#name').val(response.data.name)
     $('#birth').val(response.data.birth)
-    // $('#email').val(response.data.email)
+    $('#email').val(email[0]) // 이메일 형식 지정 및 @ 끊기
+    $('#email2').val('@'+email[1]) // 이메일 형식 지정 및 @ 끊기
 
 }
 
 /**
  * 사용자 정보 업데이트
+ * 이메일 변경
  * */
-function updateMember(){
+function updateEmail(){
+    const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
+    const email = $('#email').val() + $('#email2').val();
+    console.log(memberId)
+    console.log(email)
 
-    axios.put("/members/myPage/")
-        .then(function (response) {
-            settingMyPageMember(response);
-        })
+
+    axios.put("/members/myPage/put-email", {
+        memberId: memberId,
+        email: email,
+    }) .then(function (response) {
+        alert("수정이 완료되었습니다.")
+
+        // settingMyPageMember(response);
+
+    })
+        .catch(function (error) {
+            alert(error);
+        });
+
+}
+/**
+ * 사용자 정보 업데이트
+ * 비밀번호 변경
+ * */
+function updatePassword(){
+    const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
+    const loginPassword = $('#loginPassword').val();
+    const checkPassword = $('#checkPassword').val();
+
+
+    axios.put("/members/myPage/put-password", {
+        memberId: memberId,
+        loginPassword: loginPassword,
+        checkPassword: checkPassword
+    }) .then(function (response) {
+        alert("수정이 완료되었습니다. 다시 로그인해주세요.")
+        logout();
+
+    })
         .catch(function (error) {
             alert(error);
         });
@@ -194,15 +224,9 @@ function urlCheck(){
 
 
 }
+//확인
+// 비밀번호 변경 후 기존 비번으로 접속가능하나 데이터 볼 수 없음..
 
-// 로그인 응답에 loginId, success, message, token만 있음 -완료
-// 여기에 memberNo를 추가 -완료
-// 프론트의 loginInfo 추가 -완료
 
-// members/{2} -완료
-
-//마이페이지
-// 회원정보 가져오기, 수정/저장
-//
 
 

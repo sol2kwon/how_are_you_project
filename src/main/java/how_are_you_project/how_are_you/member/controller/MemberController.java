@@ -25,7 +25,6 @@ public class MemberController {
     private final MemberService memberService;
     @PostMapping("/join")
     public void joinMember(@Valid @RequestBody JoinMemberDto joinMemberDto) {
-        System.out.println(joinMemberDto);
         memberService.joinMember(joinMemberDto);
     }
 
@@ -37,6 +36,16 @@ public class MemberController {
     @GetMapping("/myPage/{memberId}")
     public MyPageMemberResponseDto myPageMember(@PathVariable("memberId") Long memberId ) {
         return memberService.myPageMember(memberId);
+    }
+
+    @PutMapping("/myPage/put-email")
+    public void updateEmail(@Valid @RequestBody MyPageMemberResponseDto updateParam ) {
+        log.info("put email --->  {}",updateParam);
+        memberService.updateEmail(updateParam);
+    }
+    @PutMapping("/myPage/put-password")
+        public void updatePassword(@Valid @RequestBody MyPageMemberResponseDto updateParam ) {
+         memberService.updatePassword(updateParam);
     }
 
 

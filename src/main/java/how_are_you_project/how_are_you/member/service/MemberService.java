@@ -110,6 +110,28 @@ public class MemberService {
 
     }
 
+    public void updateEmail(MyPageMemberResponseDto updateParam) {
+        memberRepository.updateEmail(updateParam);
+    }
+
+    public void updatePassword(MyPageMemberResponseDto updateParam) {
+        try {
+            //해당 id를 가진 멤버 정보조회
+            Member member = memberRepository.findByMember(updateParam.getMemberId());
+
+            // db 패스워드랑 입력한 패스워드 확인 트루이면
+
+            boolean checkPassword = aes128.decrypt(member.getLoginPassword()).matches(updateParam.getLoginPassword());
+            if (checkPassword) {
+                // 수정할 패스워드로 업데이트
+                MyPageMemberResponseDto updatePassword = MyPageMemberResponseDto.updatePassword(updateParam.getMemberId(), updateParam.getLoginPassword(), aes128.encrypt(updateParam.getCheckPassword()));
+
+                memberRepository.updatePassword(updatePassword);
+            }
+        } catch (Exception e){
+            throw new IllegalStateException(e);
+        }
+    }
 
 }
 

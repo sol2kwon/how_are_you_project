@@ -26,4 +26,10 @@ public class HomeController {
         return "myPage";
     }
 
+    @RequestMapping("/members/q")
+    public String q(){
+        log.info("q controller");
+        return "q";
+    }
+
 }

@@ -6,6 +6,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import how_are_you_project.how_are_you.dto.LoginMemberDto;
 import how_are_you_project.how_are_you.dto.LoginMemberResponse;
+import how_are_you_project.how_are_you.dto.MyPageMemberResponseDto;
 import how_are_you_project.how_are_you.member.domain.Member;
 import how_are_you_project.how_are_you.member.domain.QMember;
 import lombok.RequiredArgsConstructor;
@@ -40,12 +41,25 @@ public class MemberRepository {
     }
 
     /**
-     * 해당 아이디의 정보 조회
+     * 로그인 아이디를 가지고
+     * 해당 멤버정보 조회
      * */
     public Member findByPassword(String loginId){
         return queryFactory
                 .selectFrom(member)
                 .where(loginIdEq(loginId))
+                .fetchOne();
+
+    }
+
+    /**
+     * 멤버 아이디를 가지고
+     * 해당 멤버정보 조회
+     * */
+    public Member findByMember(Long memberId){
+        return queryFactory
+                .selectFrom(member)
+                .where(member.memberId.eq(memberId))
                 .fetchOne();
 
     }
@@ -66,12 +80,32 @@ public class MemberRepository {
 
     }
 
+    public void updateEmail(MyPageMemberResponseDto updateParam) {
+        em.flush();
+        em.clear();
+
+       queryFactory
+           .update(member)
+           .set(member.email,updateParam.getEmail())
+           .where(member.memberId.eq(updateParam.getMemberId()))
+           .execute();
+    }
+
+    public void updatePassword(MyPageMemberResponseDto updateParam) {
+        em.flush();
+        em.clear();
+
+        queryFactory
+                .update(member)
+                .set(member.loginPassword,updateParam.getCheckPassword())
+                .where(member.memberId.eq(updateParam.getMemberId()))
+                .execute();
+    }
 
 
-
-
-
-
-
-
+//    public Member updateMyPageMember(MyPageMemberResponseDto myPageRequest) {
+//        return queryFactory
+//                .update(member)
+//                .set(member.)
+//    }
 }
