@@ -1,5 +1,3 @@
-const count = 0;
-
 $(document).ready(function() {
     inputError();
     settingNavbar();
@@ -8,7 +6,7 @@ $(document).ready(function() {
         selectMember()
     };
 
-
+    questionRandom();
 
 });
 
@@ -80,11 +78,16 @@ function loginMember() {
 function settingNavbar() {
     if (loginCheck() ) {
         let html ='';
+        let button = '';
+        button += '<button onclick="question();" id="question" class="w3-button w3-green w3-xlarge" style="height: 56px;margin: 30px;">이야기 작성하기</button>'
+
+        $("#question").remove();
+        $("#header").append(button);
 
         html +=
             '<a href="#about" class="w3-bar-item w3-button">About</a>' +
             '<a href="#menu" class="w3-bar-item w3-button">Menu</a>' +
-            '<a href="/members/q" class="w3-bar-item w3-button">Contact</a>' +
+            '<a href="/members/question" class="w3-bar-item w3-button">Contact</a>' +
             '<a href="/members/myPage" class="w3-bar-item w3-button">마이페이지</a>' +
             '<a href="/" class="w3-bar-item w3-button" onclick="logout();">로그아웃</a>'
 
@@ -141,13 +144,6 @@ function selectMember(){
             .catch(function (error) {
                 alert(error);
             });
-
-
-
-
-
-
-
 }
 
 function settingMyPageMember(response){
@@ -211,9 +207,12 @@ function updatePassword(){
         });
 
 }
+/**
+ * url확인
+ * */
 
 function urlCheck(){
-    const myPage = 'http://localhost:8080/members/myPage'
+    const myPage = location.host+'/members/myPage'
     const nowPage = document.location.href
     let check = Boolean(false);
 
@@ -221,7 +220,29 @@ function urlCheck(){
         check = true;
     }
     return check;
+}
 
+function question(){
+    location.href = "/members/question"
+
+}
+
+/**
+ * 오늘의 질문 호출
+ * */
+function questionRandom(){
+    const questionId = Math.floor(Math.random() * 100) + 1;
+    console.log(questionId)
+    //*알고리즘 시나리오
+    // questionId값 = 1~100까지의 숫자를 무작위로 뽑는다.
+    // member id값,questionId값 넘겨준다
+    // member question 테이블에  where memberid 리스트 조회
+    // 중복된 값이 없으면 question 테이블에서 questionId에 맞는 값을 뽑아온다.
+
+    // 중복된 값이 있으면? member question 테이블에 저장된 id [] 출력
+    // 1~100개의 숫자중에 [] 과 중복된 값을 제외하고 new [] 생성
+    // new [] 에서 [0]번째 값을 가지고 question 테이블 조회
+    // 화면에 반환
 
 }
 //확인

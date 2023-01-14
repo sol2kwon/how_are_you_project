@@ -30,6 +30,12 @@
 <!--    <p>Albert Einstein</p>-->
 <!--</div>-->
 
+<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-right" style="width:200px;right:0; padding: 30px 16px;" id="mySidebar">
+    <button class="w3-bar-item w3-button w3-large " onclick="w3_close()">Close &times;</button>
+    <a href="/members/question" class="w3-bar-item w3-button">오늘의 질문</a>
+    <a href="/members/answer" class="w3-bar-item w3-button">나의 답변조회</a>
+</div>
+
 <div class="w3-card-4"style="margin-top: 56px;">
 
     <header class="w3-container w3-light-grey">
@@ -43,13 +49,22 @@
         <p>President/CEO at Mighty Schools...</p>
     </div>
 
-    <div class="w3-panel w3-pale-blue w3-leftbar w3-border-blue" style="height: 300px">
-        <p>London is the most populous city in the United Kingdom,
-            with a metropolitan area of over 9 million inhabitants.</p>
+    <div class="w3-container">
+    <label class="w3-text-blue"><b>Last Name</b></label>
+    <input class="w3-input w3-border" type="text" style="height: 300px">
+
+    <button class="w3-btn w3-blue">답장하기</button>
     </div>
 
-    <button class="w3-button w3-block w3-dark-grey">답장하기</button>
-
 </div>
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+</script>
 </body>
 </html>
