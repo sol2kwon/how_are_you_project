@@ -1,4 +1,4 @@
-package how_are_you_project.how_are_you.dto;
+package how_are_you_project.how_are_you.dto.member;
 
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.AllArgsConstructor;

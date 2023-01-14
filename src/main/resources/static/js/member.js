@@ -226,13 +226,23 @@ function question(){
     location.href = "/members/question"
 
 }
-
+/************************************ Question *********************************/
 /**
  * 오늘의 질문 호출
  * */
 function questionRandom(){
-    const questionId = Math.floor(Math.random() * 100) + 1;
-    console.log(questionId)
+    let questionId = Math.floor(Math.random() * 100) + 1;
+    const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
+
+    axios.get("/question/"+ memberId+"/"+questionId)
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+
+
     //*알고리즘 시나리오
     // questionId값 = 1~100까지의 숫자를 무작위로 뽑는다.
     // member id값,questionId값 넘겨준다

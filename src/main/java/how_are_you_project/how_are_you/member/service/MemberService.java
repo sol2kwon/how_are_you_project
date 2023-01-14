@@ -1,11 +1,11 @@
 package how_are_you_project.how_are_you.member.service;
 
-import how_are_you_project.how_are_you.dto.LoginMemberDto;
-import how_are_you_project.how_are_you.dto.LoginMemberResponse;
-import how_are_you_project.how_are_you.dto.MyPageMemberResponseDto;
+import how_are_you_project.how_are_you.dto.member.LoginMemberDto;
+import how_are_you_project.how_are_you.dto.member.LoginMemberResponse;
+import how_are_you_project.how_are_you.dto.member.MyPageMemberResponseDto;
 import how_are_you_project.how_are_you.member.domain.Role;
 import how_are_you_project.how_are_you.security.cipher.Aes128;
-import how_are_you_project.how_are_you.dto.JoinMemberDto;
+import how_are_you_project.how_are_you.dto.member.JoinMemberDto;
 import how_are_you_project.how_are_you.member.domain.Member;
 import how_are_you_project.how_are_you.member.repository.MemberRepository;
 import how_are_you_project.how_are_you.utils.TimeUtils;

@@ -1,22 +1,15 @@
 package how_are_you_project.how_are_you.member.repository;
 
-import com.querydsl.core.types.Predicate;
-import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import how_are_you_project.how_are_you.dto.LoginMemberDto;
-import how_are_you_project.how_are_you.dto.LoginMemberResponse;
-import how_are_you_project.how_are_you.dto.MyPageMemberResponseDto;
+import how_are_you_project.how_are_you.dto.member.MyPageMemberResponseDto;
 import how_are_you_project.how_are_you.member.domain.Member;
-import how_are_you_project.how_are_you.member.domain.QMember;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
-import java.util.Optional;
 
 import static how_are_you_project.how_are_you.member.domain.QMember.member;
 
