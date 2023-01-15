@@ -8,14 +8,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "question")
 @Getter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Question {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "question_id")
     private Long questionId;
+
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "content")
     private String content;

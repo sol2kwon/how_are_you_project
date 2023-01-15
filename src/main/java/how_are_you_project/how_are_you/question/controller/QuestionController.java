@@ -1,6 +1,7 @@
 package how_are_you_project.how_are_you.question.controller;
 
 import how_are_you_project.how_are_you.dto.member.MyPageMemberResponseDto;
+import how_are_you_project.how_are_you.member.service.MemberService;
 import how_are_you_project.how_are_you.question.domain.Question;
 import how_are_you_project.how_are_you.question.service.QuestionService;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class QuestionController {
 
-    @GetMapping("/{memberId}/{questionId}")
-    public Question randomQuestion(@PathVariable("memberId") Long memberId,@PathVariable("questionId") Long questionId ) {
-        QuestionService.randomQuestion(memberId,questionId);
-        return null;
+    private final QuestionService questionService;
+
+    @GetMapping("/{memberId}")
+    public Question randomQuestion(@PathVariable("memberId") Long memberId ) {
+        return questionService.randomQuestion(memberId);
     }
 }

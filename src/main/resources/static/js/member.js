@@ -231,28 +231,19 @@ function question(){
  * 오늘의 질문 호출
  * */
 function questionRandom(){
-    let questionId = Math.floor(Math.random() * 100) + 1;
     const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
 
-    axios.get("/question/"+ memberId+"/"+questionId)
+    axios.get("/question/"+memberId)
         .then(function (response) {
-            console.log(response)
+            const title = response.data.title
+            const content = response.data.content
+            $('#title').children('p').eq(0).text(title)
+            $('#title').children('p').eq(1).text(content)
         })
         .catch(function (error) {
             alert(error);
         });
 
-
-    //*알고리즘 시나리오
-    // questionId값 = 1~100까지의 숫자를 무작위로 뽑는다.
-    // member id값,questionId값 넘겨준다
-    // member question 테이블에  where memberid 리스트 조회
-    // 중복된 값이 없으면 question 테이블에서 questionId에 맞는 값을 뽑아온다.
-
-    // 중복된 값이 있으면? member question 테이블에 저장된 id [] 출력
-    // 1~100개의 숫자중에 [] 과 중복된 값을 제외하고 new [] 생성
-    // new [] 에서 [0]번째 값을 가지고 question 테이블 조회
-    // 화면에 반환
 
 }
 //확인
