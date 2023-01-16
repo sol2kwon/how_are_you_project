@@ -85,9 +85,9 @@ function settingNavbar() {
         $("#header").append(button);
 
         html +=
-            '<a href="#about" class="w3-bar-item w3-button">About</a>' +
-            '<a href="#menu" class="w3-bar-item w3-button">Menu</a>' +
-            '<a href="/members/question" class="w3-bar-item w3-button">Contact</a>' +
+            '<a href="/#about" class="w3-bar-item w3-button">프로젝트 소개</a>' +
+            '<a href="#menu" class="w3-bar-item w3-button">아이템 상점</a>' +
+            '<a href="/members/question" class="w3-bar-item w3-button">오늘의 질문</a>' +
             '<a href="/members/myPage" class="w3-bar-item w3-button">마이페이지</a>' +
             '<a href="/" class="w3-bar-item w3-button" onclick="logout();">로그아웃</a>'
 
