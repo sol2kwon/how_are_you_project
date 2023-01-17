@@ -22,5 +22,7 @@ public class Question {
     @Column(name = "content")
     private String content;
 
-
+    public Question(Long questionId) {
+        this.questionId = questionId;
+    }
 }

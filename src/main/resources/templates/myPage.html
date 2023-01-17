@@ -28,7 +28,7 @@
       <input class="w3-input w3-border" id="loginId" name="last" type="text" disabled="disabled"></p>
 
     <p><label>비밀번호</label>
-    <div class="w3-row-padding">
+    <div>
       <div class="w3-half">
         <label>First Name</label>
         <input id="loginPassword" class="w3-input w3-border" type="text" placeholder="Two">
@@ -43,10 +43,10 @@
       <input class="w3-input w3-border" id="name" name="first" type="text" disabled="disabled"></p>
 
     <p><label>생년월일</label>
-      <input class="w3-input w3-border" id="birth" name="last" type="text" disabled="disabled"> </p>
+      <input class="w3-input w3-border w3-row-padding" id="birth" name="last" type="text" disabled="disabled"> </p>
 
     <p><label>이메일</label>
-    <div class="w3-row-padding" >
+    <div>
       <div class="w3-half">
         <input class="w3-input w3-border" id="email" type="text" placeholder="Two">
       </div>
@@ -55,9 +55,11 @@
 
       </div>
     </div>
+    <div class="w3-center">>
     <button class="w3-button w3-round-xlarge w3-teal" onclick="updatePassword();">비밀번호 수정</button>
     <button class="w3-button w3-round-xlarge w3-teal" onclick="updateEmail();">이메일 수정</button>
-  </div>
+    </div>
+    </div>
 
 </div>
 </body>

@@ -10,11 +10,11 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "member_question")
 @Getter
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class MemberQuestion {
+
+
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "member_question_id")
@@ -33,5 +33,15 @@ public class MemberQuestion {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private Question question;
+
+
+    @Builder
+    public MemberQuestion(Member member, Question question,LocalDate memberQuestionDate) {
+
+        this.member = member;
+        this.question = question;
+        this.memberQuestionDate = memberQuestionDate;
+
+    }
 
 }

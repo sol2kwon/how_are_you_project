@@ -3,6 +3,7 @@ package how_are_you_project.how_are_you.question.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import how_are_you_project.how_are_you.member.domain.Member;
 import how_are_you_project.how_are_you.question.domain.MemberQuestion;
+import how_are_you_project.how_are_you.question.domain.QMemberQuestion;
 import how_are_you_project.how_are_you.question.domain.QQuestion;
 import how_are_you_project.how_are_you.question.domain.Question;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +30,8 @@ public class QuestionRepository {
     /**
      * 답변 저장
      * */
-    public void saveQuestion(MemberQuestion memberQuestion) {
-        em.persist(memberQuestion);
+    public void saveQuestion(MemberQuestion prams) {
+        em.persist(prams);
     }
 
 
@@ -68,5 +69,13 @@ public class QuestionRepository {
                 .fetchOne();
 
 
+    }
+
+    public void findByQuestionMemberList(MemberQuestion memberQuestion) {
+
+    }
+
+    public void questionMember(MemberQuestion memberQuestion) {
+                em.persist(memberQuestion);
     }
 }

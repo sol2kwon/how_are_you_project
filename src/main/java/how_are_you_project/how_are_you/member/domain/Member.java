@@ -54,6 +54,10 @@ public class Member {
     @ElementCollection(fetch = FetchType.EAGER) //?eager 확인
     public List <Role> roles;
 
+    public Member(Long memberId) {
+        this.memberId = memberId;
+    }
+
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "board")//읽기전용
 //    private List<Board> feelingList = new ArrayList<>();

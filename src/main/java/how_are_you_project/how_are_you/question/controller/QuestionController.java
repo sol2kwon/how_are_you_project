@@ -19,12 +19,11 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
-    @PostMapping("/save")
-    public void saveQuestion(@Valid @RequestBody MemberQuestionDto memberQuestionDto) {
-        log.info("saveQuestion {}", memberQuestionDto);
-        System.out.println(memberQuestionDto);
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2");
-        questionService.saveQuestion(memberQuestionDto);
+    @PostMapping("/put")
+    public void updateQuestion(@Valid @RequestBody MemberQuestionDto memberQuestionDto) {
+        log.info("updateQuestion {}", memberQuestionDto);
+
+        questionService.updateQuestion(memberQuestionDto);
     }
     @GetMapping("/{memberId}")
     public Question randomQuestion(@PathVariable("memberId") Long memberId ) {
