@@ -8,6 +8,10 @@ $(document).ready(function() {
 
     questionRandom();
 
+    w3_close();
+
+
+
 });
 
 /**
@@ -87,7 +91,7 @@ function settingNavbar() {
         html +=
             '<a href="/#about" class="w3-bar-item w3-button">프로젝트 소개</a>' +
             '<a href="#menu" class="w3-bar-item w3-button">아이템 상점</a>' +
-            '<a href="/members/question" class="w3-bar-item w3-button">오늘의 질문</a>' +
+            '<a href="/question" class="w3-bar-item w3-button">오늘의 질문</a>' +
             '<a href="/members/myPage" class="w3-bar-item w3-button">마이페이지</a>' +
             '<a href="/" class="w3-bar-item w3-button" onclick="logout();">로그아웃</a>'
 
@@ -155,7 +159,6 @@ function settingMyPageMember(response){
     $('#birth').val(response.data.birth)
     $('#email').val(email[0]) // 이메일 형식 지정 및 @ 끊기
     $('#email2').val('@'+email[1]) // 이메일 형식 지정 및 @ 끊기
-
 }
 
 /**
@@ -165,9 +168,6 @@ function settingMyPageMember(response){
 function updateEmail(){
     const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
     const email = $('#email').val() + $('#email2').val();
-    console.log(memberId)
-    console.log(email)
-
 
     axios.put("/members/myPage/put-email", {
         memberId: memberId,
@@ -222,10 +222,6 @@ function urlCheck(){
     return check;
 }
 
-function question(){
-    location.href = "/members/question"
-
-}
 /************************************ Question *********************************/
 /**
  * 오늘의 질문 호출
@@ -235,17 +231,63 @@ function questionRandom(){
 
     axios.get("/question/"+memberId)
         .then(function (response) {
+            console.log(response)
             const title = response.data.title
             const content = response.data.content
+            const questionId = response.data.questionId
+
             $('#title').children('p').eq(0).text(title)
             $('#title').children('p').eq(1).text(content)
-        })
+            $('#questionId').val(questionId)
+
+        }).catch(function (error) {
+            alert(error);
+        });
+}
+
+/**
+ * 답변 저장
+ * */
+function saveQuestion() {
+    const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
+    const questionId = $('#questionId').val()
+    const answer = $('#answer').val();
+
+    axios.post("/question/save", {
+        memberId: memberId,
+        answer: answer,
+        questionId : questionId
+    }) .then(function (response) {
+        console.log(response)
+        alert('답변이 완료되었습니다.')
+        //오늘 작성한 날짜의 게시글만 불러오기
+        location.href= "/";
+    })
         .catch(function (error) {
             alert(error);
         });
-
-
 }
+
+/************************************ Common *********************************/
+/**
+ * 사이더바 열기, 닫기
+ * */
+
+function sideOpenClose() {
+    const stateCheck = $("#mySidebar").children('button').attr('name');
+    let stateNow = 'open'
+
+    if (stateCheck === stateNow){
+        $("#mySidebar").css('width', '10px');
+        stateNow = 'close'
+        $("#buttonState").prop('name', stateNow);
+    }else {
+        $("#mySidebar").css("width", "200px");
+        stateNow = 'open'
+        $("#buttonState").prop('name', stateNow);
+    }
+}
+
 //확인
 // 비밀번호 변경 후 기존 비번으로 접속가능하나 데이터 볼 수 없음..
 

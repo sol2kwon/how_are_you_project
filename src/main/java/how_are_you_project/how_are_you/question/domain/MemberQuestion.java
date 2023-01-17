@@ -2,7 +2,7 @@ package how_are_you_project.how_are_you.question.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import how_are_you_project.how_are_you.member.domain.Member;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +10,10 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "member_question")
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class MemberQuestion {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)

@@ -26,7 +26,7 @@ public class HomeController {
         return "myPage";
     }
 
-    @RequestMapping("/members/question")
+    @RequestMapping("/question")
     public String question(){
         log.info("q controller");
         return "question";

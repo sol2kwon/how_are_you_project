@@ -1,4 +1,7 @@
 package how_are_you_project.how_are_you.question.service;
+import how_are_you_project.how_are_you.dto.question.MemberQuestionDto;
+import how_are_you_project.how_are_you.member.domain.Member;
+import how_are_you_project.how_are_you.question.domain.MemberQuestion;
 import how_are_you_project.how_are_you.question.domain.Question;
 import how_are_you_project.how_are_you.question.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +18,6 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true) //따로 설정한 트랜잭셔널 먼저 동작
 @Slf4j
 @RequiredArgsConstructor
-@ToString
 public class QuestionService {
     private final QuestionRepository questionRepository;
 
@@ -57,8 +59,14 @@ public class QuestionService {
         return resultQuestion;
     }
 
-    public Question saveQuestion(Long memberId) {
-     return null;
+    public void saveQuestion(MemberQuestionDto memberQuestionDto) {
+//        MemberQuestion memberQuestion = MemberQuestion.builder()
+//                .(memberQuestionDto.getMemberId())
+//                .question(memberQuestionDto.getQuestion())
+//                .memberAnswer(memberQuestionDto.getMemberAnswer())
+//                .build();
+//        log.info("값이 어떻게 들어갔을까요?? {} ", memberQuestion);
+//                questionRepository.saveQuestion(memberQuestion);
     }
 }
 

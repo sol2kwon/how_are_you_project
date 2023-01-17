@@ -23,13 +23,10 @@
             <div th:replace="fragments/login :: login"></div>
             <button onclick="document.getElementById('id01').style.display='block'" id="question" class="w3-button w3-green w3-xlarge" style="height: 56px;margin: 30px;">이야기 작성하기</button>
 <!--            <p class="w3-padding-16"><a class="w3-button w3-black">이야기하러 가기!</a></p>-->
-
         </header>
     </div>
-
     <!-- Page content -->
     <div class="w3-content" style="max-width:1100px">
-
         <!-- About Section -->
         <div class="w3-row w3-padding-64" id="about">
             <div class="w3-col m6 w3-padding-large w3-hide-small">
@@ -55,9 +52,7 @@
 <!--                <p class="w3-large w3-text-grey w3-hide-medium">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
             </div>
         </div>
-
         <hr>
-
         <!-- Menu Section -->
         <div class="w3-row w3-padding-64" id="menu">
             <div class="w3-col l6 w3-padding-large">
@@ -71,7 +66,6 @@
                     <span class="material-icons" style="font-size: 40px">psychology_alt</span><a href="/">생각 15개</a>
                 </p>
                 <p class="w3-text-grey">생각하는 습관을 기르는 중이라면 부담없이 누려보세요. 3,900원</p><br>
-
 
                 <p style=" font-size: 20px">
                     <span class="material-icons" style="font-size: 40px">psychology_alt</span><a href="/">생각 30개 </a><span class="w3-tag w3-teal">Best!</span>
@@ -88,26 +82,33 @@
                 <img src="/css2/p2.jpg" class="w3-round w3-image w3-opacity-min" alt="Menu" style="width: 600px;height: 700px;">
             </div>
         </div>
-
         <hr>
-
         <!-- Contact Section -->
         <div class="w3-container w3-padding-64" id="contact">
             <h1>만든이 소개</h1><br>
-            <p class="w3-text-blue-grey w3-large"><b>Q1.어디에 사는 누구시죠?</b></p>
-            <p>안녕하세요. 경기도 수원에 거주하는 권솔이입니다.</p>
+            <p class="w3-text-blue-grey w3-large"><b>Q1. 어디에 사는 누구신가요?</b></p>
+            <p>안녕하세요. 경기도 수원에 거주하는 권솔이입니다.(부끄..)</p>
 
-            <p class="w3-text-blue-grey w3-large"><b>Q2.전공이 아닌데 왜 개발자의 길로 오셨나요?</b></p>
+            <p class="w3-text-blue-grey w3-large"><b>Q2. 전공이 아닌데 왜 개발자의 길로 오셨나요?</b></p>
             <p>'진로 고민을 하는 사람들에게 전문적으로 도움을 줄 수 있는 프로그램이 있으면 좋겠다' 라는 생각이 저를 개발자의 길로 들어서게 했습니다. </p>
-            <p> 개발을 공부하면서 API를 만들고 데이터를 유의미한 가치로 만들어 내는 것에 즐거움을 느끼게 되었습니다. </p>
-            <p class="w3-text-blue-grey w3-large"><b>Catering Service, 42nd Living St, 43043 New York, NY</b></p>
-            <p>You can also contact us by phone 00553123-2323 or email catering@catering.com, or you can send us a message here:</p>
-            <form action="/action_page.php" target="_blank">
+            <p> 현재는 개발을 공부하면서 API를 만들고 데이터를 유의미한 가치로 만들어 내는 것에 큰 즐거움을 느끼게 되었습니다. </p>
+
+            <p class="w3-text-blue-grey w3-large"><b>Q3. 개발자로 성장하기 위해 어떤 노력들을 하시나요?</b></p>
+            <p> 스스로의 부족함을 인정하고, 개선하기 위해 시간을 많이 투자합니다. </p>
+            <p> 구글링, 인강, 책, 지인찬스를 참고해서 다양한 생각을 해보고, 직접 코딩하여 어떤 결과가 나왔는지 꼭 봅니다. </p>
+            <p> 또한, 그것들을 기록하고 필요한 순간에 한번 더 찾아봅니다! </p>
+
+            <p class="w3-text-blue-grey w3-large"><b>Q4. 마지막으로 하고싶은 말씀을 해주세요.</b></p>
+            <p> 성장해서 앞으로 나아갈때 오랜시간 함께 나아가고 싶습니다.</p>
+            <p> 감사합니다.</p>
+
+            <p class="w3-text-blue-grey w3-large"><b>질문을 남겨보세요.</b></p>
+            <form action="" target="_blank">
                 <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
-                <p><input class="w3-input w3-padding-16" type="number" placeholder="How many people" required name="People"></p>
-                <p><input class="w3-input w3-padding-16" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+<!--                <p><input class="w3-input w3-padding-16" type="number" placeholder="How many people" required name="People"></p>-->
+<!--                <p><input class="w3-input w3-padding-16" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>-->
                 <p><input class="w3-input w3-padding-16" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
-                <p><button class="w3-button w3-light-grey w3-section" type="submit">SEND MESSAGE</button></p>
+                <p><button class="w3-button w3-light-grey w3-section" type="submit">작성하기</button></p>
             </form>
         </div>
 

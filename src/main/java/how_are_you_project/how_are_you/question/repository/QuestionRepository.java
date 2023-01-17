@@ -1,6 +1,8 @@
 package how_are_you_project.how_are_you.question.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import how_are_you_project.how_are_you.member.domain.Member;
+import how_are_you_project.how_are_you.question.domain.MemberQuestion;
 import how_are_you_project.how_are_you.question.domain.QQuestion;
 import how_are_you_project.how_are_you.question.domain.Question;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,14 @@ public class QuestionRepository {
 
     private final EntityManager em;
     private final JPAQueryFactory queryFactory;
+
+    /**
+     * 답변 저장
+     * */
+    public void saveQuestion(MemberQuestion memberQuestion) {
+        em.persist(memberQuestion);
+    }
+
 
     /**
      * memberId를 가지고 [questionId] 조회
