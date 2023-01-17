@@ -36,11 +36,12 @@ public class MemberQuestion {
 
 
     @Builder
-    public MemberQuestion(Member member, Question question,LocalDate memberQuestionDate) {
+    public MemberQuestion(Member member, Question question,LocalDate memberQuestionDate,String memberAnswer) {
 
         this.member = member;
         this.question = question;
         this.memberQuestionDate = memberQuestionDate;
+        this.memberAnswer = memberAnswer;
 
     }
 

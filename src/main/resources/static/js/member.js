@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     inputError();
     settingNavbar();
@@ -6,11 +7,7 @@ $(document).ready(function() {
         selectMember()
     };
 
-    questionRandom();
-
-    w3_close();
-
-
+        questionRandom()
 
 });
 
@@ -214,9 +211,11 @@ function updatePassword(){
 function urlCheck(){
     const myPage = location.host+'/members/myPage'
     const nowPage = document.location.href
+
+
     let check = Boolean(false);
 
-    if (myPage === nowPage){
+    if (myPage === nowPage  ){
         check = true;
     }
     return check;
@@ -248,16 +247,20 @@ function questionRandom(){
 /**
  * 답변 저장
  * */
-function saveQuestion() {
+function updateQuestion() {
     const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
     const questionId = $('#questionId').val()
     const answer = $('#answer').val();
+    alert("1")
+    //날짜 보낼때 화면에도 예쁘게 찍어주기. ->전체리스트 조회하며 ㄴ끝
 
-    axios.post("/question/save", {
+    axios.put("/question/put-answer", {
         memberId: memberId,
         answer: answer,
-        questionId : questionId
+        questionId : questionId,
+        nowDate : '2023-01-18'
     }) .then(function (response) {
+        alert("2")
         console.log(response)
         alert('답변이 완료되었습니다.')
         //오늘 작성한 날짜의 게시글만 불러오기
@@ -286,6 +289,14 @@ function sideOpenClose() {
         stateNow = 'open'
         $("#buttonState").prop('name', stateNow);
     }
+}
+function settingDate(){
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    return year+'-'+month+'-'+day
 }
 
 //확인

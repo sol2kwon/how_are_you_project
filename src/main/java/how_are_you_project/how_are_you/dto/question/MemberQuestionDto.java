@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class MemberQuestionDto {
 
 
@@ -17,9 +18,8 @@ public class MemberQuestionDto {
     private Long memberId; //memberId
 
     private Long questionId ; //questionId
-    @Builder
-    public MemberQuestionDto(Long memberId, Long questionId) {
-        this.memberId = memberId;
-        this.questionId = questionId;
-    }
+
+    private LocalDate nowDate;
+
+
 }

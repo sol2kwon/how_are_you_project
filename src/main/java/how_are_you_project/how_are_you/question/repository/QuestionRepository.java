@@ -1,6 +1,8 @@
 package how_are_you_project.how_are_you.question.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import how_are_you_project.how_are_you.dto.member.MyPageMemberResponseDto;
+import how_are_you_project.how_are_you.dto.question.MemberQuestionDto;
 import how_are_you_project.how_are_you.member.domain.Member;
 import how_are_you_project.how_are_you.question.domain.MemberQuestion;
 import how_are_you_project.how_are_you.question.domain.QMemberQuestion;
@@ -16,6 +18,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static how_are_you_project.how_are_you.member.domain.QMember.member;
 import static how_are_you_project.how_are_you.question.domain.QMemberQuestion.memberQuestion;
 import static how_are_you_project.how_are_you.question.domain.QQuestion.question;
 
@@ -70,6 +73,33 @@ public class QuestionRepository {
 
 
     }
+    /**
+     * memberId,nowDate를 가지고
+     * MemberQuestion테이블의 MemberQuestionId 조회
+     * */
+    public Long findByMemberQuestionId (MemberQuestionDto memberQuestionDto){
+       return queryFactory
+                .select(memberQuestion.memberQuestionId)
+                .from(memberQuestion)
+                .where(memberQuestion.member.memberId.eq(memberQuestionDto.getMemberId())
+                        ,memberQuestion.memberQuestionDate.eq(memberQuestionDto.getNowDate()))
+                .fetchOne();
+    }
+    /**
+     * memberQuestionDto 와 MemberQuestionId를 가지고
+     * MemberQuestion테이블의 memberAnswer 업데이트
+     * */
+    public void updateMemberQuestion(MemberQuestionDto memberQuestionParams,Long memberQuestionId){
+        em.flush();
+        em.clear();
+
+        queryFactory
+                .update(memberQuestion)
+                .set(memberQuestion.memberAnswer,memberQuestionParams.getAnswer())
+                .where(memberQuestion.memberQuestionId.eq(memberQuestionId))
+                .execute();
+    }
+
 
     public void findByQuestionMemberList(MemberQuestion memberQuestion) {
 

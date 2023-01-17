@@ -87,6 +87,8 @@ public class QuestionService {
 
     public void updateQuestion(MemberQuestionDto memberQuestionDto) {
 
+        Long memberQuestionId = questionRepository.findByMemberQuestionId(memberQuestionDto);
+        questionRepository.updateMemberQuestion(memberQuestionDto,memberQuestionId);
     }
 }
 

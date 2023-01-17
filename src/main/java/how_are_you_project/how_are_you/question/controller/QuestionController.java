@@ -19,7 +19,7 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
-    @PostMapping("/put")
+    @PutMapping("/put-answer")
     public void updateQuestion(@Valid @RequestBody MemberQuestionDto memberQuestionDto) {
         log.info("updateQuestion {}", memberQuestionDto);
 
