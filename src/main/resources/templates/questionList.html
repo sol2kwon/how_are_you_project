@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="/js/member.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<body>
+<div th:replace="fragments/siderBar :: siderBar"></div>
+
+<div class="w3-container" style="margin-top: 70px;">
+  <p>The w3-ul class creates a basic list:</p>
+
+  <div class="w3-row-padding">
+    <div class="w3-third">
+      <input class="w3-input w3-border" type="text" placeholder="검색어를 입력하세요">
+    </div>
+    <div class="w3-third">
+      <input class="w3-input w3-border" type="date" id="startDate" value="" min="2023-01-01" max="2033-12-31">
+    </div>
+    <div class="w3-third">
+      <input class="w3-input w3-border" type="date" id="endDate" value="" min="2023-01-01" max="2033-12-31">
+    </div>
+    <button id="submitButton" class="w3-button w3-light-grey w3-section w3-center" type="button" style="width: 150px; height: 50px;margin: 45%;font-size: 18px;" onclick="questionListAll();"><b>검색</b></button>
+
+  </div>
+  <div>
+    <table class="w3-table">
+      <thead>
+      <tr>
+        <th>날짜</th>
+        <th>제목</th>
+      </tr>
+      </thead>
+      <tbody id="questionTbody">
+      <tr class="w3-hover-green">
+        <td>검색조건을 설정해주세요.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

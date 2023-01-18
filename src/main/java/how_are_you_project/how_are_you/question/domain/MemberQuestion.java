@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Table(name = "member_question")
 @Getter
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "question")
 public class MemberQuestion {
 
 
@@ -26,10 +26,12 @@ public class MemberQuestion {
     @Column(name = "member_answer")
     private String memberAnswer;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private Question question;

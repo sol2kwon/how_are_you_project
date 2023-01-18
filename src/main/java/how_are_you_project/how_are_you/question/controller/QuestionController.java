@@ -3,6 +3,7 @@ package how_are_you_project.how_are_you.question.controller;
 import how_are_you_project.how_are_you.dto.member.MyPageMemberResponseDto;
 import how_are_you_project.how_are_you.dto.question.MemberQuestionDto;
 import how_are_you_project.how_are_you.member.service.MemberService;
+import how_are_you_project.how_are_you.question.domain.MemberQuestion;
 import how_are_you_project.how_are_you.question.domain.Question;
 import how_are_you_project.how_are_you.question.service.QuestionService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,8 +28,17 @@ public class QuestionController {
 
         questionService.updateQuestion(memberQuestionDto);
     }
-    @GetMapping("/{memberId}")
+    @GetMapping("/get-{memberId}")
     public Question randomQuestion(@PathVariable("memberId") Long memberId ) {
+        log.info("randomQuestion {}", memberId);
         return questionService.randomQuestion(memberId);
+    }
+
+    @GetMapping("/questionList/{memberId}/{startDate}/{endDate}")
+    public List<MemberQuestionDto> questionList(@PathVariable("memberId") Long memberId
+    , @PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) {
+
+        log.info("questionList {} {} {}", memberId,startDate,endDate);
+        return questionService.questionList(memberId,startDate,endDate);
     }
 }

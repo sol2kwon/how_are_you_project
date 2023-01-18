@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "memberQuestion")
 public class Member {
 
     @Id
@@ -37,6 +37,7 @@ public class Member {
     @Column(name = "email")
     private String email;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")//읽기전용
     private List<MemberQuestion> memberQuestion = new ArrayList<>();
 

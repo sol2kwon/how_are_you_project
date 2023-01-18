@@ -31,5 +31,11 @@ public class HomeController {
         log.info("q controller");
         return "question";
     }
+    @RequestMapping("/question2")
+    public String questionList(){
+        log.info("q controller");
+        return "questionList";
+    }
+
 
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
+import javax.persistence.Tuple;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -61,6 +62,8 @@ public class QuestionService {
                     .memberQuestionDate(LocalDate.parse(nowDate))
                     .build();
 
+            log.info("prams {}", prams);
+
             questionRepository.saveQuestion(prams);
 
         }else {
@@ -86,9 +89,16 @@ public class QuestionService {
     }
 
     public void updateQuestion(MemberQuestionDto memberQuestionDto) {
+        log.info("서비스 데이터 {}",memberQuestionDto);
 
         Long memberQuestionId = questionRepository.findByMemberQuestionId(memberQuestionDto);
         questionRepository.updateMemberQuestion(memberQuestionDto,memberQuestionId);
+    }
+
+    public List<MemberQuestionDto> questionList(Long memberId,String startDate,String endDate) {
+        log.info("서비스 questionList {} {} {}",memberId,startDate,endDate);
+
+        return questionRepository.questionList(memberId,startDate,endDate);
     }
 }
 

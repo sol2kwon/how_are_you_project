@@ -1,5 +1,7 @@
 package how_are_you_project.how_are_you.question.repository;
 
+import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import how_are_you_project.how_are_you.dto.member.MyPageMemberResponseDto;
 import how_are_you_project.how_are_you.dto.question.MemberQuestionDto;
@@ -11,9 +13,12 @@ import how_are_you_project.how_are_you.question.domain.Question;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Tuple;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -78,11 +83,12 @@ public class QuestionRepository {
      * MemberQuestion테이블의 MemberQuestionId 조회
      * */
     public Long findByMemberQuestionId (MemberQuestionDto memberQuestionDto){
+        log.info("데이터 확인 {}",memberQuestionDto);
        return queryFactory
                 .select(memberQuestion.memberQuestionId)
                 .from(memberQuestion)
                 .where(memberQuestion.member.memberId.eq(memberQuestionDto.getMemberId())
-                        ,memberQuestion.memberQuestionDate.eq(memberQuestionDto.getNowDate()))
+                        ,memberQuestion.memberQuestionDate.eq(memberQuestionDto.getMemberQuestionDate()))
                 .fetchOne();
     }
     /**
@@ -100,12 +106,37 @@ public class QuestionRepository {
                 .execute();
     }
 
-
     public void findByQuestionMemberList(MemberQuestion memberQuestion) {
-
     }
 
     public void questionMember(MemberQuestion memberQuestion) {
                 em.persist(memberQuestion);
     }
+
+    public List<MemberQuestionDto> questionList(Long memberId, String startDate, String endDate) {
+         List<MemberQuestionDto> result = queryFactory
+                .select(Projections.constructor(MemberQuestionDto.class,
+                        memberQuestion.memberQuestionId,
+                        memberQuestion.memberQuestionDate,
+                        memberQuestion.question.questionId,
+                        memberQuestion.question.title
+                        ))
+                 .from(memberQuestion)
+                 .where(memberIdEq(memberId)
+                         ,startDateEq(startDate)
+                            ,endDateEq(endDate))
+                .fetch();
+        return result;
+    }
+
+    private BooleanExpression memberIdEq(Long memberId){
+        return StringUtils.hasText(String.valueOf(memberId)) ? memberQuestion.member.memberId.eq(memberId) : null;
+    }
+    private BooleanExpression startDateEq(String startDate){
+        return StringUtils.hasText(startDate) ? memberQuestion.memberQuestionDate.goe(LocalDate.parse(startDate)) : null;
+    }
+    private BooleanExpression endDateEq(String endDate){
+        return StringUtils.hasText(endDate) ? memberQuestion.memberQuestionDate.loe(LocalDate.parse(endDate)) : null;
+    }
+
 }

@@ -96,9 +96,4 @@ public class MemberRepository {
     }
 
 
-//    public Member updateMyPageMember(MyPageMemberResponseDto myPageRequest) {
-//        return queryFactory
-//                .update(member)
-//                .set(member.)
-//    }
 }

@@ -7,9 +7,15 @@ $(document).ready(function() {
         selectMember()
     };
 
-        questionRandom()
+
+    settingDate();
+
+    questionRandom();
 
 });
+
+
+
 
 /**
  * 회원가입
@@ -80,7 +86,7 @@ function settingNavbar() {
     if (loginCheck() ) {
         let html ='';
         let button = '';
-        button += '<button onclick="question();" id="question" class="w3-button w3-green w3-xlarge" style="height: 56px;margin: 30px;">이야기 작성하기</button>'
+        button += '<button id="question" class="w3-button w3-green w3-xlarge questionButton" style="height: 56px;margin: 30px;">이야기 작성하기</button>'
 
         $("#question").remove();
         $("#header").append(button);
@@ -88,7 +94,7 @@ function settingNavbar() {
         html +=
             '<a href="/#about" class="w3-bar-item w3-button">프로젝트 소개</a>' +
             '<a href="#menu" class="w3-bar-item w3-button">아이템 상점</a>' +
-            '<a href="/question" class="w3-bar-item w3-button">오늘의 질문</a>' +
+            '<a href="/question" class="w3-bar-item w3-button questionButton" >오늘의 질문</a>' +
             '<a href="/members/myPage" class="w3-bar-item w3-button">마이페이지</a>' +
             '<a href="/" class="w3-bar-item w3-button" onclick="logout();">로그아웃</a>'
 
@@ -178,7 +184,6 @@ function updateEmail(){
         .catch(function (error) {
             alert(error);
         });
-
 }
 /**
  * 사용자 정보 업데이트
@@ -197,7 +202,6 @@ function updatePassword(){
     }) .then(function (response) {
         alert("수정이 완료되었습니다. 다시 로그인해주세요.")
         logout();
-
     })
         .catch(function (error) {
             alert(error);
@@ -211,11 +215,20 @@ function updatePassword(){
 function urlCheck(){
     const myPage = location.host+'/members/myPage'
     const nowPage = document.location.href
-
-
     let check = Boolean(false);
 
-    if (myPage === nowPage  ){
+    if (myPage === nowPage ){
+        check = true;
+    }
+    return check;
+}
+
+function urlCheck1(){
+    const myPage = location.host+'/question'
+    const nowPage = document.location.href
+    let check = Boolean(false);
+
+    if (myPage === nowPage ){
         check = true;
     }
     return check;
@@ -227,10 +240,8 @@ function urlCheck(){
  * */
 function questionRandom(){
     const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
-
-    axios.get("/question/"+memberId)
+    axios.get("/question/get-"+memberId)
         .then(function (response) {
-            console.log(response)
             const title = response.data.title
             const content = response.data.content
             const questionId = response.data.questionId
@@ -251,16 +262,14 @@ function updateQuestion() {
     const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
     const questionId = $('#questionId').val()
     const answer = $('#answer').val();
-    alert("1")
-    //날짜 보낼때 화면에도 예쁘게 찍어주기. ->전체리스트 조회하며 ㄴ끝
+    const nowDate = new Date();
 
     axios.put("/question/put-answer", {
         memberId: memberId,
         answer: answer,
         questionId : questionId,
-        nowDate : '2023-01-18'
+        nowDate : nowDate
     }) .then(function (response) {
-        alert("2")
         console.log(response)
         alert('답변이 완료되었습니다.')
         //오늘 작성한 날짜의 게시글만 불러오기
@@ -270,6 +279,38 @@ function updateQuestion() {
             alert(error);
         });
 }
+/************************************ Question *********************************/
+function questionListAll(){
+    const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
+    alert("들어옴")
+    const startDate = $('#startDate').val();
+    const endDate = $('#endDate').val();
+    console.log(memberId)
+    console.log(startDate)
+    console.log(endDate)
+
+    axios.get("/question/questionList/"+memberId+"/"+startDate+"/"+endDate)
+        .then(function (response) {
+            console.log(response)
+            let html = '';
+            const result = response.data
+            //리스트 0 반환되나 확인
+                for(let i = 0; 0< result.length; i++){
+                    html += '<tr class="w3-hover-green">\n' +
+                            '<td>'+result[i].memberQuestionDate+'</td>\n' +
+                            '<td><a>'+result[i].title+'</a></td>\n' +
+                            '</tr>'
+                    $('#questionTbody').empty();
+                    $('#questionTbody').append(html)
+                }
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+
+
+}
+
 
 /************************************ Common *********************************/
 /**
@@ -290,14 +331,39 @@ function sideOpenClose() {
         $("#buttonState").prop('name', stateNow);
     }
 }
-function settingDate(){
+function settingDate() {
     let date = new Date();
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
-
-    return year+'-'+month+'-'+day
+    const today = year + '-' + month + '-' + day
+    $('#today').text(today);
 }
+
+
+
+    //
+    // function selectDate(){
+    //     const today = new Date();
+    //     $('input[name="daterange"]').daterangepicker({
+    //         opens: 'left',
+    //         "minDate": "01/01/2023",
+    //         "maxDate": "12/31/2033",
+    //         "startDate": today
+    //     }, function (start, end, label) {
+    //         $('input[name="daterange"]').val(start.format('YYYY-MM-DD') + ' ~ ' + end.format('YYYY-MM-DD'));
+    //         $('#start').val(start);
+    //         $('#end').val(end);
+    //         alert(start)
+    //         alert(end)
+    //     });
+    // }
+
+
+
+
+
+
 
 //확인
 // 비밀번호 변경 후 기존 비번으로 접속가능하나 데이터 볼 수 없음..
