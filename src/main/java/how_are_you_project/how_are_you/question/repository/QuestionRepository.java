@@ -62,11 +62,14 @@ public class QuestionRepository {
                 .fetch();
     }
 
-    public Question findByQuestionList(Long noneMatchQuestionId) {
+    // findByMemberId()
+    // findAllByGenderAndName()
+
+    public Question findByQuestionId(Long id) {
         return queryFactory
                 .select(question)
                 .from(question)
-                .where(question.questionId.eq(noneMatchQuestionId))
+                .where(question.questionId.eq(id))
                 .fetchOne();
     }
 
@@ -91,6 +94,7 @@ public class QuestionRepository {
                         ,memberQuestion.memberQuestionDate.eq(memberQuestionDto.getMemberQuestionDate()))
                 .fetchOne();
     }
+
     /**
      * memberQuestionDto 와 MemberQuestionId를 가지고
      * MemberQuestion테이블의 memberAnswer 업데이트

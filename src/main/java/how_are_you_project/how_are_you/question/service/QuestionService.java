@@ -1,6 +1,7 @@
 package how_are_you_project.how_are_you.question.service;
 import how_are_you_project.how_are_you.dto.question.MemberQuestionDto;
 import how_are_you_project.how_are_you.member.domain.Member;
+import how_are_you_project.how_are_you.member.service.MemberService;
 import how_are_you_project.how_are_you.question.domain.MemberQuestion;
 import how_are_you_project.how_are_you.question.domain.Question;
 import how_are_you_project.how_are_you.question.repository.QuestionRepository;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class QuestionService {
+    private final MemberService memberService;
     private final QuestionRepository questionRepository;
 
     /** 랜덤 질문 시나리오
@@ -43,22 +45,50 @@ public class QuestionService {
      * 6. noneMatchIdList 랜덤 인덱스 값을 가지고 Question 테이블에서 질문목록을 반환한다.
      * */
     public Question randomQuestion(Long memberId) {
+        /***
+         * 1. 멤버의 아이디로 질문을 조회해본다.
+         *    1-1. 있다? X
+         *    1-2. 없는데 아직 줄 질문이 남았다? 중복되지 않는 것으로 만들어서 save
+         *    - 받지 않은 질문
+         *    - 답변 안한 질문
+         *
+         * 1. 멤버의 답변 안한 질문 (anwser = null) 목록(A)들을 다 조회한다.
+         * 2. A 중에서 오늘날짜의 질문이 있나?
+         *    2-1. 있다? 아무것도안함
+         *    2-2. 없다? 받지않고, 답변안한 질문 중 랜덤으로 하나 만들어준다.
+         * 3. 그 중에서 랜덤으로 하나를 리턴해준다.
+         *
+         * [Q1, Q2]
+         *
+         * [MQ-Q1-230119-X, MQ-Q2-230120-X, MQ-Q3-230121-X, ...., MQ-Q1-230221-O, MQ-Q1-230120-X]
+         */
+
+//        List<MemberQuestion> A = Collections.emptyList();  // (1)
+//        Optional<MemberQuestion> todayQuestion = A.stream() // (2)
+//         .filter(a -> a.getMemberQuestionDate().equals(LocalDate.now())) // (2)
+//                .findFirst(); // (2)
+//        if (todayQuestion.isEmpty()) { // (2-2)
+//            // 없으니 만들어서 save
+//        }
+//        // A + 새로만든거(2-2) 중에 랜덤으로 뽑아서 리턴한다 (3)
+
+
         Question resultQuestion ;
         List<Long> findByMemberQuestionIdList = questionRepository.findByMemberQuestionIdList(memberId);
-        Member saveMemberId = new Member(memberId);
+
+        Member member = memberService.findMemberEntity(memberId);
         LocalDateTime localDateTime = LocalDateTime.now();
         String nowDate = localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         if (ObjectUtils.isEmpty(findByMemberQuestionIdList)){
             Long idCount = questionRepository.findByQuestionCount();
             int findId = (int) Math.floor(Math.random() * idCount)+1;
-            Question saveQuestionId = new Question((long) findId);
 
-            resultQuestion = questionRepository.findByQuestionList((long) findId);
+            resultQuestion = findQuestionEntity((long) findId);
 
             MemberQuestion prams = MemberQuestion.builder()
-                    .member(saveMemberId)
-                    .question(saveQuestionId)
+                    .member(member)
+                    .question(resultQuestion)
                     .memberQuestionDate(LocalDate.parse(nowDate))
                     .build();
 
@@ -74,11 +104,11 @@ public class QuestionService {
 
             int Index = (int) (Math.random() * noneMatchIdList.size());
 
-            resultQuestion = questionRepository.findByQuestionList(noneMatchIdList.get(Index));
+            resultQuestion = findQuestionEntity(noneMatchIdList.get(Index));
             Question saveQuestionId = new Question(resultQuestion.getQuestionId());
 
             MemberQuestion prams = MemberQuestion.builder()
-                    .member(saveMemberId)
+                    .member(member)
                     .question(saveQuestionId)
                     .memberQuestionDate(LocalDate.parse(nowDate))
                     .build();
@@ -99,6 +129,10 @@ public class QuestionService {
         log.info("서비스 questionList {} {} {}",memberId,startDate,endDate);
 
         return questionRepository.questionList(memberId,startDate,endDate);
+    }
+
+    public Question findQuestionEntity(Long id) {
+        return questionRepository.findByQuestionId(id);
     }
 }
 

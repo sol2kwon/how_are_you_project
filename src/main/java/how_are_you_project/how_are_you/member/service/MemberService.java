@@ -117,7 +117,7 @@ public class MemberService {
     public void updatePassword(MyPageMemberResponseDto updateParam) {
         try {
             //해당 id를 가진 멤버 정보조회
-            Member member = memberRepository.findByMember(updateParam.getMemberId());
+            Member member = findMemberEntity(updateParam.getMemberId());
 
             // db 패스워드랑 입력한 패스워드 확인 트루이면
 
@@ -131,6 +131,14 @@ public class MemberService {
         } catch (Exception e){
             throw new IllegalStateException(e);
         }
+    }
+
+    public Member findMemberEntity(Long memberId) {
+        Member member = memberRepository.findByMember(memberId);
+        if (member == null) {
+            throw new IllegalStateException("사용자를 찾을수 없습니다. memberId" + memberId);
+        }
+        return member;
     }
 
 }

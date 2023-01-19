@@ -34,9 +34,20 @@ public class QuestionController {
         return questionService.randomQuestion(memberId);
     }
 
+    // restful api >
+    // GET /members/{memberNo}
+    // GET /members?gender=man
+    // GET /questions?memberId=1&startDate=1111
+
     @GetMapping("/questionList/{memberId}/{startDate}/{endDate}")
     public List<MemberQuestionDto> questionList(@PathVariable("memberId") Long memberId
     , @PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) {
         return questionService.questionList(memberId,startDate,endDate);
     }
+
+//    @GetMapping("/memberQuestionOne/{memberId}/{memberQuestionId}/{questionId}/{memberQuestionDate}")
+//    public List<MemberQuestionDto> memberQuestionOne(@PathVariable("memberId") Long memberId
+//            , @PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) {
+//        return questionService.questionList(memberId,startDate,endDate);
+//    }
 }
