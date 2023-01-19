@@ -15,25 +15,25 @@
 <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-right" style="width:200px;right:0; padding: 30px 16px;" id="mySidebar" >
     <button id="buttonState" class="w3-bar-item w3-button w3-large " onclick="sideOpenClose()" name="open">Close &times;</button>
     <a href="/question" class="w3-bar-item w3-button questionButton">오늘의 질문</a>
-    <a href="/question2" class="w3-bar-item w3-button">나의 답변조회</a>
+    <a href="/question2" class="w3-bar-item w3-button">나의 질문답변</a>
 </div>
 
 <div class="w3-card-4"style="margin-top: 56px;">
 
     <header id="today" class="w3-container w3-light-grey" style="font-size: 30px;">
-        <h3>John Doe</h3>
+        <h3>Date</h3>
     </header>
 
     <div id="title" class="w3-container" style="font-size: 25px;">
-        <p>1 new friend request</p>
+        <p>Title</p>
         <hr>
         <img src="/css2/file.jpg" alt="Avatar" class="w3-left w3-circle" style="height: 200px;">
-        <p>President/CEO at Mighty Schools...</p>
+        <p style="font-weight: 600;">Question</p>
     </div>
 
     <div class="w3-container">
     <label class="w3-text-blue"><b>Answer</b></label>
-    <input type="hidden" id="questionId"value="">
+    <input type="hidden" id="questionId" value="">
     <input id="answer" class="w3-input w3-border" type="text" style="height: 300px" >
 
     <button class="w3-btn w3-blue" onclick="updateQuestion();">답변하기</button>

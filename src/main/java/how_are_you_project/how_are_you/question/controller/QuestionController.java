@@ -37,8 +37,6 @@ public class QuestionController {
     @GetMapping("/questionList/{memberId}/{startDate}/{endDate}")
     public List<MemberQuestionDto> questionList(@PathVariable("memberId") Long memberId
     , @PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) {
-
-        log.info("questionList {} {} {}", memberId,startDate,endDate);
         return questionService.questionList(memberId,startDate,endDate);
     }
 }

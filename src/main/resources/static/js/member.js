@@ -279,36 +279,48 @@ function updateQuestion() {
             alert(error);
         });
 }
+
+
 /************************************ Question *********************************/
 function questionListAll(){
     const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
-    alert("들어옴")
     const startDate = $('#startDate').val();
     const endDate = $('#endDate').val();
-    console.log(memberId)
-    console.log(startDate)
-    console.log(endDate)
 
     axios.get("/question/questionList/"+memberId+"/"+startDate+"/"+endDate)
         .then(function (response) {
             console.log(response)
             let html = '';
-            const result = response.data
-            //리스트 0 반환되나 확인
-                for(let i = 0; 0< result.length; i++){
+
+            if (response.data.length !==0){
+                for(let i = 0; i<response.data.length; i++){
+                    const today = new Date();
+                    const dataDate = new Date(response.data[i].memberQuestionDate);
+                    const threeMonthAgo = today.setMonth(today.getMonth() - 3) //현재 날짜에서 3개월전
+                    // const disabled = dataDate - threeMonthAgo > 0? '' : 'disabled';
                     html += '<tr class="w3-hover-green">\n' +
-                            '<td>'+result[i].memberQuestionDate+'</td>\n' +
-                            '<td><a>'+result[i].title+'</a></td>\n' +
-                            '</tr>'
-                    $('#questionTbody').empty();
-                    $('#questionTbody').append(html)
+                            '<td style="text-align: center">'+response.data[i].memberQuestionDate+'</td>\n' +
+                            '<td style="text-align: center"><a href="">'+response.data[i].title+'</a></td>\n'
+                    if (dataDate - threeMonthAgo > 0){
+                       html += '<td style="text-align: center">정상</td>'
+                    }else {
+                        html += '<td style="text-align: center"><button class="w3-button w3-black">결제</button></td>'
+                    }
+                     html += '</tr>'
                 }
+            }else {
+                html += '<tr class="w3-hover-green">\n' +
+                        '<td colspan="3" style="text-align: center"> 검색조건에 맞는 내용이 없습니다.</td>\n' +
+                        '<td style="text-align: center"> </td>\n' +
+                        '<td style="text-align: center"> </td>\n' +
+                        '</tr>'
+            }
+            $('#questionTbody').empty();
+            $('#questionTbody').append(html)
         })
         .catch(function (error) {
             alert(error);
         });
-
-
 }
 
 
@@ -339,29 +351,6 @@ function settingDate() {
     const today = year + '-' + month + '-' + day
     $('#today').text(today);
 }
-
-
-
-    //
-    // function selectDate(){
-    //     const today = new Date();
-    //     $('input[name="daterange"]').daterangepicker({
-    //         opens: 'left',
-    //         "minDate": "01/01/2023",
-    //         "maxDate": "12/31/2033",
-    //         "startDate": today
-    //     }, function (start, end, label) {
-    //         $('input[name="daterange"]').val(start.format('YYYY-MM-DD') + ' ~ ' + end.format('YYYY-MM-DD'));
-    //         $('#start').val(start);
-    //         $('#end').val(end);
-    //         alert(start)
-    //         alert(end)
-    //     });
-    // }
-
-
-
-
 
 
 
