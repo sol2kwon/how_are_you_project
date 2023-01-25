@@ -26,7 +26,7 @@ order과 comment는 추후에 추가 할 예정이다.
 
 <img width="75%" src="https://user-images.githubusercontent.com/97998547/214490005-0db3c9f5-fac7-4102-b66b-0585030d4e4c.png"/>
 
-에이쿼리툴 사용 : [AQuery](https://https://aquerytool.com/)
+에이쿼리툴 사용 : [AQuery](https://aquerytool.com/)
 
 
 1. member
