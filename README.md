@@ -15,4 +15,4 @@ SNS에 투자하는 시간도 좋지만, 하루에 1개의 질문을 통해 스�
 
 
 ## 테이블 관계
-<img width="80%" src="https://user-images.githubusercontent.com/97998547/214490005-0db3c9f5-fac7-4102-b66b-0585030d4e4c.png"/>
+<img width="70%" src="https://user-images.githubusercontent.com/97998547/214490005-0db3c9f5-fac7-4102-b66b-0585030d4e4c.png"/>
