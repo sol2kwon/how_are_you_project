@@ -18,6 +18,21 @@ How are you?는 오늘 어때? , 안녕? 등의 의미로 널리 알려져 있�
 SNS에 투자하는 시간도 좋지만, 하루에 1개의 질문을 통해 스스로를 생각해 볼 수 있는 시간을 갖게 되었으면 좋겠다는 마음에 제작하게 되었다.
 
 
+## 기술스택
+
+1. Frontend
+   + Javascript, JQuery, HTML, w3shools
+  
+
+2. Backend
+   + Java(v11), SpringBoot(v2.7.7), Querydsl-jpa, Gradle, Junit4
+  
+3. DB
+   + MariaDB
+
+
+
+
 
 
 ## ERD
