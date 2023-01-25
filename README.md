@@ -11,4 +11,4 @@ How are you?는 오늘 어때? , 안녕? 등의 의미로 널리 알려져 있�
 SNS에 투자하는 시간도 좋지만, 하루에 1개의 질문을 통해 스스로를 생각해 볼 수 있는 시간을 갖게 되었으면 좋겠다는 마음에 제작하게 되었다.
 
 ## 테이블 관계
-<img width="80%" src="https://user-images.githubusercontent.com/16822641/109461495-913fc480-7aa5-11eb-9d0e-aff762669f98.gif"/>
+<img width="80%" src="https://user-images.githubusercontent.com/97998547/214490005-0db3c9f5-fac7-4102-b66b-0585030d4e4c.png"/>
