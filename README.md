@@ -1,4 +1,11 @@
-## how_are_you_project?
+## how_are_you_project? 소개
+
+<img width="75%" src="https://user-images.githubusercontent.com/97998547/214499705-c5285249-cdc2-43fe-96ab-327f128c0d5a.png"/>
+
+
+
+
+
 How are you?는 오늘 어때? , 안녕? 등의 의미로 널리 알려져 있다.
 
 우리 나라 사람들의 공통 대답은 I’m fine , 괜찮아, 좋아, 안녕. 
@@ -18,6 +25,8 @@ member, question, member_question은 핵심 기능이다.
 order과 comment는 추후에 추가 할 예정이다. 
 
 <img width="75%" src="https://user-images.githubusercontent.com/97998547/214490005-0db3c9f5-fac7-4102-b66b-0585030d4e4c.png"/>
+
+에이쿼리툴 사용 : [AQuery](https://https://aquerytool.com/)
 
 
 1. member
