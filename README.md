@@ -1,4 +1,4 @@
-## how_are_you_project? 소개
+## how_are_you? 소개
 
 <img width="75%" src="https://user-images.githubusercontent.com/97998547/214502225-c00f0d99-a821-485e-a216-e194f52eb48a.png"/>
 
