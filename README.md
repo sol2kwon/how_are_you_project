@@ -25,7 +25,7 @@ SNS에 투자하는 시간도 좋지만, 하루에 1개의 질문을 통해 스�
   
 
 2. Backend
-   + Java(v11), SpringBoot(v2.7.7), Querydsl-jpa, Gradle, Junit4
+   + Java(v11), SpringBoot(v2.7.7), IntelliJ IDEA, Querydsl-jpa, Gradle, Junit4
   
 3. DB
    + MariaDB
