@@ -1,4 +1,4 @@
-# how_are_you_project?
+## how_are_you_project?
 How are you?는 오늘 어때? , 안녕? 등의 의미로 널리 알려져 있다.
 
 우리 나라 사람들의 공통 대답은 I’m fine , 괜찮아, 좋아, 안녕. 
@@ -9,6 +9,10 @@ How are you?는 오늘 어때? , 안녕? 등의 의미로 널리 알려져 있�
 타인에 대해서는 잘 이해하면서도 정작 자기 자신에게는 야박하게 구는 사람들이 많다.
 
 SNS에 투자하는 시간도 좋지만, 하루에 1개의 질문을 통해 스스로를 생각해 볼 수 있는 시간을 갖게 되었으면 좋겠다는 마음에 제작하게 되었다.
+
+
+
+
 
 ## 테이블 관계
 <img width="80%" src="https://user-images.githubusercontent.com/97998547/214490005-0db3c9f5-fac7-4102-b66b-0585030d4e4c.png"/>
