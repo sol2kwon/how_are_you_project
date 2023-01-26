@@ -29,7 +29,7 @@ public class QuestionController {
         questionService.updateQuestion(memberQuestionDto);
     }
     @GetMapping("/get-{memberId}")
-    public Question randomQuestion(@PathVariable("memberId") Long memberId ) {
+    public MemberQuestionDto randomQuestion(@PathVariable("memberId") Long memberId ) {
         log.info("randomQuestion {}", memberId);
         return questionService.randomQuestion(memberId);
     }

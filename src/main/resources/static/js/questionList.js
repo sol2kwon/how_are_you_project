@@ -18,7 +18,7 @@ function questionListAll(){
                     const dataDate = new Date(response.data[i].memberQuestionDate);
                     const threeMonthAgo = today.setMonth(today.getMonth() - 3) //현재 날짜에서 3개월전
                     // const disabled = dataDate - threeMonthAgo > 0? '' : 'disabled';
-                    html += '<tr class="w3-hover-green">\n' +
+                    html += '<tr class="w3-hover-green tableSolid">\n' +
                         '<input type="hidden" id="memberQuestionId" value="'+response.data[i].memberQuestionId+'"/>\n' +
                         '<input type="hidden" id="questionId" value="'+response.data[i].questionId+'"/>\n' +
                         '<td id="memberQuestionDate" style="text-align: center">'+response.data[i].memberQuestionDate+'</td>\n' +
@@ -31,10 +31,10 @@ function questionListAll(){
                     html += '</tr>'
                 }
             }else {
-                html += '<tr class="w3-hover-green">\n' +
-                    '<td colspan="3" style="text-align: center"> 검색조건에 맞는 내용이 없습니다.</td>\n' +
-                    '<td style="text-align: center"> </td>\n' +
-                    '<td style="text-align: center"> </td>\n' +
+                html += '<tr class="w3-hover-green tableSolid" >\n' +
+                    '<td colspan="3" style="text-align: center" > 검색조건에 맞는 내용이 없습니다.</td>\n' +
+                    '<td style="text-align: center" > </td>\n' +
+                    '<td style="text-align: center" > </td>\n' +
                     '</tr>'
             }
             $('#questionTbody').empty();

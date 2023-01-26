@@ -13,10 +13,12 @@ function questionRandom(){
             const title = response.data.title
             const content = response.data.content
             const questionId = response.data.questionId
+            const date = '<h3>'+response.data.memberQuestionDate+'</h3>'
 
             $('#title').children('p').eq(0).text(title)
             $('#title').children('p').eq(1).text(content)
             $('#questionId').val(questionId)
+            $('#today').append(date)
 
         }).catch(function (error) {
         alert(error);

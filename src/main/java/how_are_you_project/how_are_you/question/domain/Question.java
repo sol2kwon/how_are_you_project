@@ -25,4 +25,6 @@ public class Question {
     public Question(Long questionId) {
         this.questionId = questionId;
     }
+
+
 }

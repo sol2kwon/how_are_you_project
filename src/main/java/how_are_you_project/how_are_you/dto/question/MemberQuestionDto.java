@@ -9,6 +9,8 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @ToString
+@Builder
+@AllArgsConstructor
 public class MemberQuestionDto {
 
     private String answer;
@@ -22,6 +24,7 @@ public class MemberQuestionDto {
     private Long questionId;
 
     private String title;
+    private String content;
 
     public MemberQuestionDto(Long memberQuestionId, LocalDate memberQuestionDate, Long questionId, String title) {
         this.memberQuestionId = memberQuestionId;

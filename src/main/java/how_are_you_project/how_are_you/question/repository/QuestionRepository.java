@@ -116,6 +116,19 @@ public class QuestionRepository {
                 .execute();
     }
 
+    /**
+     * memberQuestionDto 와 MemberQuestionId를 가지고
+     * MemberQuestion테이블의 memberAnswer 업데이트
+     * */
+    public MemberQuestion findByAllMemberQuestion(Long Id, String date){
+        return queryFactory
+                .select(memberQuestion)
+                .from(memberQuestion)
+                .where(memberIdEq(Id)
+                        ,dateEq(date))
+                .fetchOne();
+    }
+
     public void findByQuestionMemberList(MemberQuestion memberQuestion) {
     }
 
@@ -141,6 +154,10 @@ public class QuestionRepository {
 
     private BooleanExpression memberIdEq(Long memberId){
         return StringUtils.hasText(String.valueOf(memberId)) ? memberQuestion.member.memberId.eq(memberId) : null;
+    }
+
+    private BooleanExpression dateEq(String date){
+        return StringUtils.hasText(String.valueOf(date)) ? memberQuestion.memberQuestionDate.eq(LocalDate.parse(date)) : null;
     }
     private BooleanExpression startDateEq(String startDate){
         return StringUtils.hasText(startDate) ? memberQuestion.memberQuestionDate.goe(LocalDate.parse(startDate)) : null;

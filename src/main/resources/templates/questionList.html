@@ -7,11 +7,16 @@
 <script type="text/javascript" src="/js/common.js"></script>
 <script type="text/javascript" src="/js/questionList.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+  .tableSolid {
+    border-bottom:1px solid #000;
+  }
+</style>
 <body>
 <div th:replace="fragments/siderBar :: siderBar"></div>
 
 <div class="w3-container" style="margin-top: 70px;">
-  <p>The w3-ul class creates a basic list:</p>
+  <p>검색조건을 입력하세요.</p>
 
   <div class="w3-row-padding">
     <div class="w3-third">
@@ -27,7 +32,7 @@
 
   </div>
   <div>
-    <table class="w3-table" style="border: 1px solid black;border-collapse: collapse;">
+    <table class="w3-table" style="border: 1px solid black;margin-left:auto;margin-right:auto;">
       <colgroup>
         <col width="30%"/>
         <col width="40%"/>
