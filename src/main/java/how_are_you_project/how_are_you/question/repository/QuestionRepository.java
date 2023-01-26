@@ -62,6 +62,12 @@ public class QuestionRepository {
                 .fetch();
     }
 
+    public List<Question> findByQuestionList() {
+        return queryFactory
+                .selectFrom(question)
+                .fetch();
+    }
+
     // findByMemberId()
     // findAllByGenderAndName()
 
@@ -142,5 +148,27 @@ public class QuestionRepository {
     private BooleanExpression endDateEq(String endDate){
         return StringUtils.hasText(endDate) ? memberQuestion.memberQuestionDate.loe(LocalDate.parse(endDate)) : null;
     }
+/**
+ * null인 목록 반환
+ * */
+    public List<MemberQuestion> findByAnswerNullList(Long Id) {
+        return queryFactory
+                .select(memberQuestion)
+                .from(memberQuestion)
+                .where(memberQuestion.memberAnswer.isNull())
+                .fetch();
+    }
+
+    public List<MemberQuestion> findByAnswerNotNullList(Long Id) {
+        return queryFactory
+                .select(memberQuestion)
+                .from(memberQuestion)
+                .where(memberQuestion.memberAnswer.isNotNull())
+                .fetch();
+    }
+
+//    private BooleanExpression answerNullEq(Long memberId) {	// (4)
+//        return QMEM. != null ? member.age.goe(ageGoe) : null;
+//    }
 
 }
