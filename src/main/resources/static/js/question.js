@@ -13,11 +13,13 @@ function questionRandom(){
             const title = response.data.title
             const content = response.data.content
             const questionId = response.data.questionId
+            const memberQuestionId = response.data.memberQuestionId
             const date = '<h3>'+response.data.memberQuestionDate+'</h3>'
 
             $('#title').children('p').eq(0).text(title)
             $('#title').children('p').eq(1).text(content)
             $('#questionId').val(questionId)
+            $('#memberQuestionId').val(memberQuestionId)
             $('#today').append(date)
 
         }).catch(function (error) {
@@ -33,12 +35,16 @@ function updateQuestion() {
     const questionId = $('#questionId').val()
     const answer = $('#answer').val();
     const nowDate = new Date();
+    const memberQuestionId = $('#memberQuestionId').val()
+    console.log(memberQuestionId)
+    console.log(answer)
 
-    axios.put("/question/put-answer", {
-        memberId: memberId,
-        answer: answer,
-        questionId : questionId,
-        nowDate : nowDate
+    console.log(nowDate)
+
+
+    axios.put("/question/"+memberQuestionId+"/"+answer, {
+        memberQuestionId: memberQuestionId,
+        answer: answer
     }) .then(function (response) {
         console.log(response)
         alert('답변이 완료되었습니다.')

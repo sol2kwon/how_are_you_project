@@ -69,11 +69,8 @@ public class QuestionService {
         return result;
     }
 
-    public void updateQuestion(MemberQuestionDto memberQuestionDto) {
-        log.info("서비스 데이터 {}",memberQuestionDto);
-
-        Long memberQuestionId = questionRepository.findByMemberQuestionId(memberQuestionDto);
-        questionRepository.updateMemberQuestion(memberQuestionDto,memberQuestionId);
+    public void updateQuestion(Long memberQuestionId, String answer) {
+        questionRepository.updateMemberQuestion(memberQuestionId,answer);
     }
 
     public List<MemberQuestionDto> questionList(Long memberId,String startDate,String endDate) {

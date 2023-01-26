@@ -22,11 +22,11 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
-    @PutMapping("/put-answer")
-    public void updateQuestion(@Valid @RequestBody MemberQuestionDto memberQuestionDto) {
-        log.info("updateQuestion {}", memberQuestionDto);
-
-        questionService.updateQuestion(memberQuestionDto);
+    @PutMapping("/{memberQuestionId}/{answer}")
+    public void updateQuestion(@PathVariable("memberQuestionId") Long memberQuestionId,@PathVariable("answer") String answer) {
+        log.info("memberQuestionId {}",memberQuestionId);
+        log.info("answer {}",answer);
+        questionService.updateQuestion(memberQuestionId,answer);
     }
     @GetMapping("/get-{memberId}")
     public MemberQuestionDto randomQuestion(@PathVariable("memberId") Long memberId ) {

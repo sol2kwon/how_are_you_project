@@ -105,14 +105,14 @@ public class QuestionRepository {
      * memberQuestionDto 와 MemberQuestionId를 가지고
      * MemberQuestion테이블의 memberAnswer 업데이트
      * */
-    public void updateMemberQuestion(MemberQuestionDto memberQuestionParams,Long memberQuestionId){
+    public void updateMemberQuestion(Long Id,String answer){
         em.flush();
         em.clear();
 
         queryFactory
                 .update(memberQuestion)
-                .set(memberQuestion.memberAnswer,memberQuestionParams.getAnswer())
-                .where(memberQuestion.memberQuestionId.eq(memberQuestionId))
+                .set(memberQuestion.memberAnswer,answer)
+                .where(memberQuestion.memberQuestionId.eq(Id))
                 .execute();
     }
 
