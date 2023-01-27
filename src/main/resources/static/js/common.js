@@ -12,6 +12,14 @@ function joinMember() {
     const loginPassword = $('#loginPassword').val();
     const name = $('#name').val();
     const birth = $('#birth').val();
+    const regExp = /^[A-Za-z0-9]{6,12}$/; //숫자와 문자 포함 형태의 6~12자리 이내의 암호 정규식 (1 가지 조합)
+
+    if (!loginPassword.match(regExp)){
+        $(this).siblings('p').text('비밀번호를 사용할 수 없습니다.')
+        $(this).siblings('p').removeClass('fontError')
+        $(this).siblings('p').addClass('fontBlue')
+        return false;
+    };
 
     axios.post("/members/join", {
         email: email,

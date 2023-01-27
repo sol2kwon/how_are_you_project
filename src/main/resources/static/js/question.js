@@ -31,24 +31,14 @@ function questionRandom(){
  * 답변 저장
  * */
 function updateQuestion() {
-    const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
-    const questionId = $('#questionId').val()
     const answer = $('#answer').val();
-    const nowDate = new Date();
     const memberQuestionId = $('#memberQuestionId').val()
-    console.log(memberQuestionId)
-    console.log(answer)
-
-    console.log(nowDate)
-
 
     axios.put("/question/"+memberQuestionId+"/"+answer, {
         memberQuestionId: memberQuestionId,
         answer: answer
     }) .then(function (response) {
-        console.log(response)
         alert('답변이 완료되었습니다.')
-        //오늘 작성한 날짜의 게시글만 불러오기
         location.href= "/";
     })
         .catch(function (error) {
