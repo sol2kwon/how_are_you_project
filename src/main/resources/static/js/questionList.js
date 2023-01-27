@@ -6,8 +6,9 @@ function questionListAll(){
     const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
     const startDate = $('#startDate').val();
     const endDate = $('#endDate').val();
+    const text = $('#text').val();
 
-    axios.get("/question/questionList/"+memberId+"/"+startDate+"/"+endDate)
+    axios.get("/question/questionList?memberId="+memberId+"&startDate="+startDate+"&endDate="+endDate+"&text="+text)
         .then(function (response) {
             console.log(response)
             let html = '';

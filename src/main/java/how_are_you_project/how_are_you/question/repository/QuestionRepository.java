@@ -165,6 +165,10 @@ public class QuestionRepository {
     private BooleanExpression endDateEq(String endDate){
         return StringUtils.hasText(endDate) ? memberQuestion.memberQuestionDate.loe(LocalDate.parse(endDate)) : null;
     }
+    private BooleanExpression titleSearch(String text){
+        return StringUtils.hasText(text)? memberQuestion.question.title.contains(text) : null;
+    }
+
 /**
  * null인 목록 반환
  * */
