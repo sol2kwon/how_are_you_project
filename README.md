@@ -50,12 +50,13 @@ order과 comment는 추후에 추가 할 예정이다.
 
 2. question
    + 랜덤질문 리스트가 저장되어 있는 테이블이다.
-   + question 테이블과 member_question 테이블은 일대일 관계이다. 
-   + member_question과 member 테이블은 다대일 관계이다.
+   + question 테이블과 member_question 테이블은 일대다 관계이다. 
+   
 
 3. member_question
    + 하루에 1번 생성된 랜덤질문이 저장되어 있는 테이블이다.
-   + member_question 테이블과 question 테이블은 일대일 관계이다. 
+   + member_question 테이블과 question 테이블은 다대일 관계이다. 
+   + member_question과 member 테이블은 다대일 관계이다.
 
 4. order(추후 업데이트 예정)
    + 아이템 상점에서 주문한 정보가 저장되어 있는 테이블이다.
