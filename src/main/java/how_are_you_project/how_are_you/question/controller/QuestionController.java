@@ -40,9 +40,13 @@ public class QuestionController {
     // GET /questions?memberId=1&startDate=1111
 
     @GetMapping("/questionList")
-    public List<MemberQuestionDto> questionList(@PathVariable("memberId") Long memberId
-    , @PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) {
-        return questionService.questionList(memberId,startDate,endDate);
+    public List<MemberQuestionDto> questionList(@RequestParam(value = "memberId") Long memberId,
+                                                @RequestParam(value = "startDate") String startDate,
+                                                @RequestParam(value = "endDate") String endDate,
+                                                @RequestParam(value = "text", required = false) String text) {
+
+        log.info("data {} {} {} {}",memberId,startDate,endDate,text);
+        return questionService.questionList(memberId,startDate,endDate,text);
     }
 
 //    @GetMapping("/memberQuestionOne/{memberId}/{memberQuestionId}/{questionId}/{memberQuestionDate}")

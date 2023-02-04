@@ -37,5 +37,11 @@ public class HomeController {
         return "questionList";
     }
 
+    @RequestMapping("/itemStore")
+    public String itemStore(){
+        log.info("itemStore");
+        return "itemStore";
+    }
+
 
 }

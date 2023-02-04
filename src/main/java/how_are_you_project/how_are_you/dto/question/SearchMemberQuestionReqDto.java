@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class SearchMemberQuestionReqDto {
 
-    private Long memberId; //memberId
+    private Long memberId;
     private String startDate ;
     private String endDate ;
     private String text ;

@@ -73,10 +73,10 @@ public class QuestionService {
         questionRepository.updateMemberQuestion(memberQuestionId,answer);
     }
 
-    public List<MemberQuestionDto> questionList(Long memberId,String startDate,String endDate) {
-        log.info("서비스 questionList {} {} {}",memberId,startDate,endDate);
+    public List<MemberQuestionDto> questionList(Long memberId,String startDate,String endDate,String text) {
+        log.info("서비스 questionList {} {} {} {}",memberId,startDate,endDate,text);
 
-        return questionRepository.questionList(memberId,startDate,endDate);
+        return questionRepository.questionList(memberId,startDate,endDate,text);
     }
 
     public Question findQuestionEntity(Long id) {

@@ -135,8 +135,11 @@ public class QuestionRepository {
     public void questionMember(MemberQuestion memberQuestion) {
                 em.persist(memberQuestion);
     }
-
-    public List<MemberQuestionDto> questionList(Long memberId, String startDate, String endDate) {
+/**
+ * 질문/답변내용 검색조건 쿼리
+ * 시작날짜와 끝나는 날짜는 필수로 지정해야한다.
+ * */
+    public List<MemberQuestionDto> questionList(Long memberId, String startDate, String endDate,String text) {
          List<MemberQuestionDto> result = queryFactory
                 .select(Projections.constructor(MemberQuestionDto.class,
                         memberQuestion.memberQuestionId,
@@ -147,7 +150,8 @@ public class QuestionRepository {
                  .from(memberQuestion)
                  .where(memberIdEq(memberId)
                          ,startDateEq(startDate)
-                            ,endDateEq(endDate))
+                         ,endDateEq(endDate)
+                         ,(titleSearch(text)))
                 .fetch();
         return result;
     }

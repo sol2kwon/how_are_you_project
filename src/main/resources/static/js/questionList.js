@@ -1,6 +1,7 @@
 $(document).ready(function() {
-});
 
+
+});
 
 function questionListAll(){
     const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
@@ -14,7 +15,6 @@ function questionListAll(){
                     "text":text
                     };
 
-    // axios.get("/question/questionList?memberId="+memberId+"&startDate="+startDate+"&endDate="+endDate+"&text="+text)
     axios.get("/question/questionList",{params})
         .then(function (response) {
             console.log(response)
@@ -30,9 +30,9 @@ function questionListAll(){
                         '<input type="hidden" id="memberQuestionId" value="'+response.data[i].memberQuestionId+'"/>\n' +
                         '<input type="hidden" id="questionId" value="'+response.data[i].questionId+'"/>\n' +
                         '<td id="memberQuestionDate" style="text-align: center">'+response.data[i].memberQuestionDate+'</td>\n' +
-                        '<td style="text-align: center"><a onclick="memberQuestionOne();">'+response.data[i].title+'</a></td>\n'
+                        '<td style="text-align: center">'+response.data[i].title+'</td>\n'
                     if (dataDate - threeMonthAgo > 0){
-                        html += '<td style="text-align: center">정상</td>'
+                        html += '<td style="text-align: center"><button id="memberQuestionOne" class="w3-button w3-black" onclick="memberQuestionOne(this)">정상</button></td>'
                     }else {
                         html += '<td style="text-align: center"><button class="w3-button w3-black">결제</button></td>'
                     }
@@ -52,6 +52,12 @@ function questionListAll(){
             alert(error);
         });
 }
-function memberQuestionOne(){
 
+function memberQuestionOne(button){
+    const memberId = JSON.parse(localStorage.getItem("loginInfo")).memberId
+    const memberQuestionId = $(button).parent().parent('tr').find('input').eq(0).val()
+    const questionId = $(button).parent().parent('tr').find('input').eq(1).val()
+
+
+//팝업창으로 해당 게시글 조회
 }
