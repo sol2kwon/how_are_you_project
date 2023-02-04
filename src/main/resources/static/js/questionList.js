@@ -8,7 +8,14 @@ function questionListAll(){
     const endDate = $('#endDate').val();
     const text = $('#text').val();
 
-    axios.get("/question/questionList?memberId="+memberId+"&startDate="+startDate+"&endDate="+endDate+"&text="+text)
+    const params = {"memberId":memberId,
+                    "startDate":startDate,
+                    "endDate":endDate,
+                    "text":text
+                    };
+
+    // axios.get("/question/questionList?memberId="+memberId+"&startDate="+startDate+"&endDate="+endDate+"&text="+text)
+    axios.get("/question/questionList",{params})
         .then(function (response) {
             console.log(response)
             let html = '';

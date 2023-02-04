@@ -39,7 +39,7 @@ public class QuestionController {
     // GET /members?gender=man
     // GET /questions?memberId=1&startDate=1111
 
-    @GetMapping("/questionList/{memberId}/{startDate}/{endDate}")
+    @GetMapping("/questionList")
     public List<MemberQuestionDto> questionList(@PathVariable("memberId") Long memberId
     , @PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate) {
         return questionService.questionList(memberId,startDate,endDate);
