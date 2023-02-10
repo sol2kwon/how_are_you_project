@@ -58,8 +58,9 @@ order과 comment는 추후에 추가 할 예정이다.
    + member_question 테이블과 question 테이블은 다대일 관계이다. 
    + member_question과 member 테이블은 다대일 관계이다.
 
-4. order(추후 업데이트 예정)
-   + 아이템 상점에서 주문한 정보가 저장되어 있는 테이블이다.
+4. item_store(추후 업데이트 예정)
+   + 아임포트 api를 사용하여 결제시스템 구현 예정
+   + count ->  date로 
   
 
 5. comment(추후 업데이트 예정) 
